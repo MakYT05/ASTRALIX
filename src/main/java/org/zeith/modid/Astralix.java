@@ -2,15 +2,18 @@ package org.zeith.modid;
 
 
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.zeith.hammerlib.api.items.CreativeTab;
 import org.zeith.hammerlib.core.adapter.LanguageAdapter;
 import org.zeith.hammerlib.core.init.ItemsHL;
 import org.zeith.hammerlib.proxy.HLConstants;
 import org.zeith.modid.client.ModEntityRenderers;
+import org.zeith.modid.custom.LootTableModifier;
 import org.zeith.modid.custom.entyties.ZeithMob;
 
 @Mod(Astralix.MOD_ID)
@@ -33,6 +36,12 @@ public class Astralix
 
 		bus.addListener(Astralix::clientSetup);
 		bus.addListener(ZeithMob::entityAttributes);
+
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+	}
+
+	private void setup(FMLCommonSetupEvent event) {
+		LootTableModifier.registerLootModifiers();
 	}
 
 	private static void clientSetup(final FMLClientSetupEvent event) { ModEntityRenderers.registerRenderers(); }
