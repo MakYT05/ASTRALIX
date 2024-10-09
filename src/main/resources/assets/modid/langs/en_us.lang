@@ -10,4 +10,7 @@ item.modid.astralcoin=Astralcoin
 item.modid.astral_chicken=Astral Chicken
 item.modid.astral_coffee=Astral Coffee
 
+block.modid.astral_block=Astral Block
+block.modid.astral_turf=Astral Turf
+
 creative_tab.modid.astralix=ASTRALIX

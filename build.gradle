@@ -240,7 +240,7 @@ def replaceProperties = [
         mod_id           : config.mod_id, mod_name: config.mod_name, mod_license: config.mod_license, mod_version: config.mod_version,
         mod_authors      : config.mod_authors, mod_description: config.mod_description,
         hl_version       : config.hl_version, modrinth_project: config.modrinth_project,
-        issue_tracker_url: config.issue_tracker_url, mod_credits: config.mod_credits
+        issue_tracker_url: config.issue_tracker_url, mod_credits: config.mod_credits,
 ]
 
 processResources {

@@ -1,0 +1,8 @@
+{
+  "parent": "block/cube_orientable",
+  "textures": {
+    "top": "modid:block/astral_turf_top",
+    "front": "modid:block/astral_turf_front",
+    "side": "modid:block/astral_turf_side"
+  }
+}
