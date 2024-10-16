@@ -19,7 +19,7 @@ public class RecipesMI implements IRecipeProvider {
 
         event.shaped()
                 .result(ItemsMI.ENDER_SWORD)
-                .shape(" N ", " E ", " B ")
+                .shape(" N ", " B ", " B ")
                 .map('N', Items.NETHER_STAR)
                 .map('B', Items.ENDER_PEARL)
                 .map('B', Items.BLAZE_ROD)

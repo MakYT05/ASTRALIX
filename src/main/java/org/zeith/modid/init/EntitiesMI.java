@@ -4,6 +4,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import org.zeith.hammerlib.annotations.RegistryName;
 import org.zeith.hammerlib.annotations.SimplyRegister;
+import org.zeith.modid.custom.entyties.AstralZombieMod;
 import org.zeith.modid.custom.entyties.LightningBoltProjectile;
 import org.zeith.modid.custom.entyties.ZeithMob;
 
@@ -20,4 +21,9 @@ public interface EntitiesMI {
     EntityType<ZeithMob> ZEITH_MOB = EntityType.Builder.of(ZeithMob::new, MobCategory.MONSTER)
             .sized(1F, 1.5F)
             .build("zeith_mob");
+
+    @RegistryName("astral_zombie")
+    EntityType<AstralZombieMod> ASTRAL_ZOMBIE = EntityType.Builder.of(AstralZombieMod::new, MobCategory.MONSTER)
+            .sized(1F, 1.5F)
+            .build("astral_zombie");
 }

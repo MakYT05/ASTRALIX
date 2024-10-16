@@ -8,5 +8,6 @@ public class ModEntityRenderers {
     public static void registerRenderers() {
         EntityRenderers.register(EntitiesMI.LIGHTNING_BALL, LightningBoltRenderer::new);
         EntityRenderers.register(EntitiesMI.ZEITH_MOB, ZeithMobRenderer::new);
+        EntityRenderers.register(EntitiesMI.ASTRAL_ZOMBIE, AstralZombieRenderer::new);
     }
 }

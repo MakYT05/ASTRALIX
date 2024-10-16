@@ -7,10 +7,10 @@ item.modid.zeith_egg=Zeith Egg
 
 item.modid.astralit=Astralit
 item.modid.astralcoin=Astralcoin
-item.modid.astral_chicken=Astral Chicken
 item.modid.astral_coffee=Astral Coffee
 
 block.modid.astral_block=Astral Block
 block.modid.astral_turf=Astral Turf
+block.modid.astral_tree=Astral Tree
 
 creative_tab.modid.astralix=ASTRALIX

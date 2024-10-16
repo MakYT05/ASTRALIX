@@ -8,4 +8,7 @@ import org.zeith.hammerlib.annotations.SimplyRegister;
 public interface ModelsMI {
     @RegistryName("zeith_mob")
     IGeometryContainer ZEITH_MOB_MODEL = IGeometryContainer.createNoSuffix();
+
+    @RegistryName("astral_zombie")
+    IGeometryContainer ASTRAL_ZOMBIE_MODEL = IGeometryContainer.createNoSuffix();
 }
