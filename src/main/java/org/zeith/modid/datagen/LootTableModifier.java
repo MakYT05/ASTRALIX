@@ -1,4 +1,4 @@
-package org.zeith.modid.custom;
+package org.zeith.modid.datagen;
 
 
 import net.minecraft.resources.ResourceLocation;

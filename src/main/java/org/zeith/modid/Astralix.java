@@ -11,7 +11,7 @@ import org.zeith.hammerlib.core.adapter.LanguageAdapter;
 import org.zeith.hammerlib.core.init.ItemsHL;
 import org.zeith.hammerlib.proxy.HLConstants;
 import org.zeith.modid.client.ModEntityRenderers;
-import org.zeith.modid.custom.LootTableModifier;
+import org.zeith.modid.datagen.LootTableModifier;
 import org.zeith.modid.custom.entyties.ZeithMob;
 
 @Mod(Astralix.MOD_ID)
