@@ -5,6 +5,7 @@ import org.zeith.hammerlib.annotations.RegistryName;
 import org.zeith.hammerlib.annotations.SimplyRegister;
 import org.zeith.modid.Astralix;
 import org.zeith.modid.custom.blocks.AstralBlock;
+import org.zeith.modid.custom.blocks.AstralLeaves;
 import org.zeith.modid.custom.blocks.AstralTree;
 import org.zeith.modid.custom.blocks.AstralTurf;
 
@@ -19,4 +20,7 @@ public interface BlocksMI
 
     @RegistryName("astral_tree")
     Block ASTRAL_TREE = Astralix.MOD_TAB.add(new AstralTree());
+
+    @RegistryName("astral_leaves")
+    Block ASTRAL_LEAVES = Astralix.MOD_TAB.add(new AstralLeaves());
 }
