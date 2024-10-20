@@ -6,6 +6,7 @@ import org.zeith.hammerlib.annotations.RegistryName;
 import org.zeith.hammerlib.annotations.SimplyRegister;
 import org.zeith.modid.custom.entyties.AstralZombieMod;
 import org.zeith.modid.custom.entyties.LightningBoltProjectile;
+import org.zeith.modid.custom.entyties.MoontlexMob;
 import org.zeith.modid.custom.entyties.ZeithMob;
 
 @SimplyRegister
@@ -21,6 +22,11 @@ public interface EntitiesMI {
     EntityType<ZeithMob> ZEITH_MOB = EntityType.Builder.of(ZeithMob::new, MobCategory.MONSTER)
             .sized(1F, 1.5F)
             .build("zeith_mob");
+
+    @RegistryName("moontlex_mob")
+    EntityType<MoontlexMob> MOONTLEX_MOB = EntityType.Builder.of(MoontlexMob::new, MobCategory.MONSTER)
+            .sized(1F, 1.5F)
+            .build("moontlex_mob");
 
     @RegistryName("astral_zombie")
     EntityType<AstralZombieMod> ASTRAL_ZOMBIE = EntityType.Builder.of(AstralZombieMod::new, MobCategory.MONSTER)

@@ -12,15 +12,15 @@ public class RecipesMI implements IRecipeProvider {
     public void provideRecipes(RegisterRecipesEvent event) {
         event.shaped()
                 .result(ItemsMI.LIGHTNING_WAND)
-                .shape(" N ", " B ", " B ")
-                .map('N', Items.NETHER_STAR)
+                .shape(" A ", " B ", " B ")
+                .map('A', ItemsMI.ASTRALIT)
                 .map('B', Items.BLAZE_ROD)
                 .register();
 
         event.shaped()
                 .result(ItemsMI.ENDER_SWORD)
-                .shape(" N ", " B ", " B ")
-                .map('N', Items.NETHER_STAR)
+                .shape(" A ", " B ", " B ")
+                .map('A', ItemsMI.ASTRALIT)
                 .map('B', Items.ENDER_PEARL)
                 .map('B', Items.BLAZE_ROD)
                 .register();
@@ -28,23 +28,23 @@ public class RecipesMI implements IRecipeProvider {
         event.shaped()
                 .result(ItemsMI.FIRE_AXE)
                 .shape(" GN", " BG", " B ")
-                .map('N', Items.NETHER_STAR)
+                .map('A', ItemsMI.ASTRALIT)
                 .map('G', Items.GHAST_TEAR)
                 .map('B', Items.BLAZE_ROD)
                 .register();
 
         event.shaped()
                 .result(ItemsMI.TNT_BOW)
-                .shape("SB ", "S N", "SB ")
-                .map('N', Items.NETHER_STAR)
+                .shape("SB ", "S A", "SB ")
+                .map('A', ItemsMI.ASTRALIT)
                 .map('S', Items.STRING)
                 .map('B', Items.BLAZE_ROD)
                 .register();
 
         event.shaped()
                 .result(ItemsMI.DARK_BRAID)
-                .shape(" WN", " B ", " B ")
-                .map('N', Items.NETHER_STAR)
+                .shape(" WA", " B ", " B ")
+                .map('A', ItemsMI.ASTRALIT)
                 .map('W', Items.WITHER_SKELETON_SKULL)
                 .map('B', Items.BLAZE_ROD)
                 .register();
@@ -57,6 +57,12 @@ public class RecipesMI implements IRecipeProvider {
                 .map('F', ItemsMI.FIRE_AXE)
                 .map('T', ItemsMI.TNT_BOW)
                 .map('D', ItemsMI.DARK_BRAID)
+                .register();
+
+        event.smelting()
+                .result(ItemsMI.ASTRALIT)
+                .input(BlocksMI.ASTRALIT_BLOCK)
+                .cookTime(200)
                 .register();
     }
 }
