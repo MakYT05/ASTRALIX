@@ -4,10 +4,7 @@ import net.minecraft.world.level.block.Block;
 import org.zeith.hammerlib.annotations.RegistryName;
 import org.zeith.hammerlib.annotations.SimplyRegister;
 import org.zeith.modid.Astralix;
-import org.zeith.modid.custom.blocks.AstralBlock;
-import org.zeith.modid.custom.blocks.AstralLeaves;
-import org.zeith.modid.custom.blocks.AstralTree;
-import org.zeith.modid.custom.blocks.AstralTurf;
+import org.zeith.modid.custom.blocks.*;
 
 @SimplyRegister
 public interface BlocksMI
@@ -23,4 +20,7 @@ public interface BlocksMI
 
     @RegistryName("astral_leaves")
     Block ASTRAL_LEAVES = Astralix.MOD_TAB.add(new AstralLeaves());
+
+    @RegistryName("astralit_block")
+    Block ASTRALIT_BLOCK = Astralix.MOD_TAB.add(new AstralitBlock());
 }

@@ -16,17 +16,17 @@ import org.zeith.modid.init.BlocksMI;
 import java.util.List;
 
 public class ModConfiguredFeatures {
-    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_ASTRAL_TURF_KEY = registerKey("astral_turf");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_ASTRALIT_BLOCK_KEY = registerKey("astralit_block");
 
     public static void bootstrap(BootstapContext<ConfiguredFeature<?, ?>> context) {
         RuleTest stoneReplaceable = new TagMatchTest(BlockTags.STONE_ORE_REPLACEABLES);
         RuleTest deepslateReplaceables = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
         List<OreConfiguration.TargetBlockState> overworldSapphireOres = List.of(OreConfiguration.target(stoneReplaceable,
-                        BlocksMI.ASTRAL_TURF.defaultBlockState()),
-                OreConfiguration.target(deepslateReplaceables, BlocksMI.ASTRAL_TURF.defaultBlockState()));
+                        BlocksMI.ASTRALIT_BLOCK.defaultBlockState()),
+                OreConfiguration.target(deepslateReplaceables, BlocksMI.ASTRALIT_BLOCK.defaultBlockState()));
 
-        register(context, OVERWORLD_ASTRAL_TURF_KEY, Feature.ORE, new OreConfiguration(overworldSapphireOres, 9));
+        register(context, OVERWORLD_ASTRALIT_BLOCK_KEY, Feature.ORE, new OreConfiguration(overworldSapphireOres, 9));
     }
 
 
