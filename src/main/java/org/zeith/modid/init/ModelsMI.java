@@ -14,4 +14,7 @@ public interface ModelsMI {
 
     @RegistryName("astral_zombie")
     IGeometryContainer ASTRAL_ZOMBIE_MODEL = IGeometryContainer.createNoSuffix();
+
+    @RegistryName("rumaruka_mob")
+    IGeometryContainer RUMARUKA_MOB_MODEL = IGeometryContainer.createNoSuffix();
 }

@@ -1,4 +1,4 @@
-package org.zeith.modid.client;
+package org.zeith.modid.client.entity;
 
 
 import com.mojang.blaze3d.MethodsReturnNonnullByDefault;

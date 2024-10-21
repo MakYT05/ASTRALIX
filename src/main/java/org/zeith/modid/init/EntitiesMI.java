@@ -4,10 +4,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import org.zeith.hammerlib.annotations.RegistryName;
 import org.zeith.hammerlib.annotations.SimplyRegister;
-import org.zeith.modid.custom.entyties.AstralZombieMod;
-import org.zeith.modid.custom.entyties.LightningBoltProjectile;
-import org.zeith.modid.custom.entyties.MoontlexMob;
-import org.zeith.modid.custom.entyties.ZeithMob;
+import org.zeith.modid.custom.entyties.*;
 
 @SimplyRegister
 public interface EntitiesMI {
@@ -32,4 +29,9 @@ public interface EntitiesMI {
     EntityType<AstralZombieMod> ASTRAL_ZOMBIE = EntityType.Builder.of(AstralZombieMod::new, MobCategory.MONSTER)
             .sized(1F, 1.5F)
             .build("astral_zombie");
+
+    @RegistryName("rumaruka_mob")
+    EntityType<RumarukaMob> RUMARUKA_MOB = EntityType.Builder.of(RumarukaMob::new, MobCategory.MONSTER)
+            .sized(1F, 1.5F)
+            .build("rumaruka_mob");
 }
