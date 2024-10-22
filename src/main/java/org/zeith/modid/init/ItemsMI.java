@@ -32,11 +32,14 @@ public interface ItemsMI{
 	Item ASTRALIT = Astralix.MOD_TAB.add(new Item(new Item.Properties()));
 
 	@RegistryName("astralcoin")
-	Item ASTRALCOIN = Astralix.MOD_TAB.add(new Item(new Item.Properties()));
+	Item ASTRALCOIN = Astralix.MOD_TAB.add(new Item(new Item.Properties().rarity(Rarity.EPIC)));
 
 	@RegistryName("astral_coffee")
 	Item ASTRAL_COFFEE = Astralix.MOD_TAB.add(new AstralCoffee(new Item.Properties().rarity(Rarity.EPIC).stacksTo(1)));
 
 	@RegistryName("astral_stick")
 	Item ASTRAL_STICK = Astralix.MOD_TAB.add(new Item(new Item.Properties()));
+
+	@RegistryName("astral_beer")
+	Item ASTRAL_BEER = Astralix.MOD_TAB.add(new Astral_Beer(new Item.Properties()));
 }
