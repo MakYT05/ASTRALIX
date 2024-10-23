@@ -1,5 +1,6 @@
 package org.zeith.modid.client.entity;
 
+import com.mojang.blaze3d.MethodsReturnNonnullByDefault;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -14,6 +15,10 @@ import org.zeith.hammeranims.api.geometry.model.RenderData;
 import org.zeith.modid.custom.entyties.RumarukaMob;
 import org.zeith.modid.init.ModelsMI;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@ParametersAreNonnullByDefault
+@MethodsReturnNonnullByDefault
 public class RumarukaMobRenderer extends EntityRenderer<RumarukaMob> {
     final ResourceLocation texture = new ResourceLocation( "modid", "textures/entity/rumaruka_mob.png");
     IGeometricModel RumarukaMobModel;

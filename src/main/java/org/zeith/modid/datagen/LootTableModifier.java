@@ -9,14 +9,11 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class LootTableModifier
-{
-    public static void onLootTableLoad(LootTableLoadEvent event)
-    {
+public class LootTableModifier {
+    public static void onLootTableLoad(LootTableLoadEvent event) {
         ResourceLocation fortressChest = new ResourceLocation("minecraft", "chests/nether_fortress");
 
-        if (event.getName().equals(fortressChest))
-        {
+        if (event.getName().equals(fortressChest)) {
             LootTable table = event.getTable();
             LootPool.Builder poolBuilder = LootPool.lootPool()
                     .name("astralix_in_fortress")

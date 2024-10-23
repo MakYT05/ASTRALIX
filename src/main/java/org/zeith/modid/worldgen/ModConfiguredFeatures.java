@@ -38,14 +38,11 @@ public class ModConfiguredFeatures {
 
         register(context, PINE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                 BlockStateProvider.simple(BlocksMI.ASTRAL_TREE),
-                        new StraightTrunkPlacer(5, 4, 3),
-
-                        BlockStateProvider.simple(BlocksMI.ASTRAL_LEAVES),
-                        new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
-
-                        new TwoLayersFeatureSize(1, 0, 2)).build());
+                new StraightTrunkPlacer(5, 4, 3),
+                BlockStateProvider.simple(BlocksMI.ASTRAL_LEAVES),
+                new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
+                new TwoLayersFeatureSize(1, 0, 2)).build());
     }
-
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation("modid", name));

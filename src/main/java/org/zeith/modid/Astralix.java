@@ -12,6 +12,9 @@ import org.zeith.hammerlib.core.adapter.LanguageAdapter;
 import org.zeith.hammerlib.core.init.ItemsHL;
 import org.zeith.hammerlib.proxy.HLConstants;
 import org.zeith.modid.client.ModEntityRenderers;
+import org.zeith.modid.custom.entyties.AstralZombieMod;
+import org.zeith.modid.custom.entyties.MoontlexMob;
+import org.zeith.modid.custom.entyties.RumarukaMob;
 import org.zeith.modid.datagen.LootTableModifier;
 import org.zeith.modid.datagen.ModWorldGenProvider;
 import org.zeith.modid.custom.entyties.ZeithMob;
@@ -39,7 +42,12 @@ public class Astralix
 		LanguageAdapter.registerMod(MOD_ID);
 
 		bus.addListener(Astralix::clientSetup);
+
 		bus.addListener(ZeithMob::entityAttributes);
+		bus.addListener(MoontlexMob::entityAttributes);
+		bus.addListener(AstralZombieMod::entityAttributes);
+		bus.addListener(RumarukaMob::entityAttributes);
+
 		bus.addListener(this::gatherData);
 	}
 

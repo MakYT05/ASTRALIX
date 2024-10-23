@@ -47,5 +47,5 @@ public class AstralZombieRenderer extends EntityRenderer<AstralZombieMod> {
         pPoseStack.popPose();
     }
 
-    public void refreshModel(RefreshStaleModelsEvent e) { AstralZombieModel = ModelsMI.ZEITH_MOB_MODEL.createModel(); }
+    public void refreshModel(RefreshStaleModelsEvent e) { AstralZombieModel = ModelsMI.ASTRAL_ZOMBIE_MODEL.createModel(); }
 }
