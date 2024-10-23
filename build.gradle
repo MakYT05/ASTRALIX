@@ -170,7 +170,7 @@ dependencies {
     compileOnly fg.deobf("mezz.jei:jei-${config.mc_version}-forge-api:${config.jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${config.mc_version}-forge:${config.jei_version}")
 
-    implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:${config.mc_version}-${config.terrablender_version}")
+    //implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:${config.mc_version}-${config.terrablender_version}")
 
     annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 
@@ -244,7 +244,7 @@ def replaceProperties = [
         mod_authors      : config.mod_authors, mod_description: config.mod_description,
         hl_version       : config.hl_version, modrinth_project: config.modrinth_project,
         issue_tracker_url: config.issue_tracker_url, mod_credits: config.mod_credits,
-        terrablender_version_range: config.terrablender_version_range
+        //terrablender_version_range: config.terrablender_version_range
 ]
 
 processResources {

@@ -39,9 +39,3 @@ displayTest="MATCH_VERSION"
     versionRange="[${hammerlib_version},)"
     ordering="NONE"
     side="BOTH"
-[[dependencies.modid]]
-    modId="terrablender"
-    mandatory=true
-    versionRange="${terrablender_version_range}"
-    ordering="NONE"
-    side="BOTH"

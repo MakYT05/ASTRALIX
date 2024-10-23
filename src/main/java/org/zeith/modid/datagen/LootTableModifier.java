@@ -21,7 +21,7 @@ public class LootTableModifier
             LootPool.Builder poolBuilder = LootPool.lootPool()
                     .name("astralix_in_fortress")
                     .setRolls(ConstantValue.exactly(4))
-                    .add(LootItem.lootTableItem(ForgeRegistries.ITEMS.getValue(new ResourceLocation("astralix", "astral_block"))));
+                    .add(LootItem.lootTableItem(ForgeRegistries.ITEMS.getValue(new ResourceLocation("modid", "astral_block"))));
 
             table.addPool(poolBuilder.build());
         }

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_cross",
+  "textures": {
+    "all": "modid:block/sapling_astral"
+  }
+}
