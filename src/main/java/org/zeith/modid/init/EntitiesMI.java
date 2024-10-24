@@ -32,6 +32,6 @@ public interface EntitiesMI {
 
     @RegistryName("rumaruka_mob")
     EntityType<RumarukaMob> RUMARUKA_MOB = EntityType.Builder.of(RumarukaMob::new, MobCategory.MONSTER)
-            .sized(1F, 1.5F)
+            .sized(0.6F, 1.8F)
             .build("rumaruka_mob");
 }

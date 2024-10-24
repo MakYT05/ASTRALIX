@@ -40,7 +40,7 @@ public class RumarukaMobRenderer extends EntityRenderer<RumarukaMob> {
         RumarukaMobModel.resetPose();
         pPoseStack.pushPose();
         pPoseStack.translate(0.5F, 0.01f, 0.5F);
-        pPoseStack.scale(1.15f, 1f, 1.25f);
+        pPoseStack.scale(1.0f, 1.0f, 1.0f);
         RumarukaMobModel.renderModel(data.apply(pPoseStack,pBuffer.getBuffer(RenderType.entitySolid(texture)),pPackedLight, OverlayTexture.NO_OVERLAY));
 
         pPoseStack.popPose();

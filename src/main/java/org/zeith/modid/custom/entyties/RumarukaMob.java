@@ -10,7 +10,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MerchantMenu;
 import net.minecraft.world.item.ItemStack;
@@ -25,6 +24,7 @@ import org.zeith.modid.init.ItemsMI;
 
 public class RumarukaMob extends PathfinderMob implements net.minecraft.world.item.trading.Merchant {
     private final MerchantOffers offers = new MerchantOffers();
+    private Player tradingPlayer;
 
     public RumarukaMob(EntityType<? extends PathfinderMob> type, Level world) {
         super(type, world);
@@ -51,8 +51,11 @@ public class RumarukaMob extends PathfinderMob implements net.minecraft.world.it
     @Override
     public InteractionResult interactAt(Player player, net.minecraft.world.phys.Vec3 vec, InteractionHand hand) {
         if (!this.level().isClientSide && hand == InteractionHand.MAIN_HAND) {
+
+            this.tradingPlayer = player;
+
             MenuProvider container = new SimpleMenuProvider(
-                    (id, inventory, p) -> new MerchantMenu(id, inventory, new Villager(EntityType.VILLAGER, this.level())),
+                    (id, inventory, p) -> new MerchantMenu(id, inventory, this),
                     Component.literal("Торговля с Румарукой")
             );
             player.openMenu(container);
@@ -62,31 +65,45 @@ public class RumarukaMob extends PathfinderMob implements net.minecraft.world.it
     }
 
     @Override
-    public MerchantOffers getOffers() { return offers; }
+    public MerchantOffers getOffers() {
+        return offers;
+    }
 
     @Override
     public void overrideOffers(MerchantOffers p_45306_) {}
 
     @Override
-    public void setTradingPlayer(Player player) {}
+    public void setTradingPlayer(Player player) {
+        this.tradingPlayer = player;
+    }
 
     @Override
-    public Player getTradingPlayer() { return null; }
+    public Player getTradingPlayer() {
+        return this.tradingPlayer;
+    }
 
     @Override
-    public int getVillagerXp() { return 10; }
+    public int getVillagerXp() {
+        return 10;
+    }
 
     @Override
     public void overrideXp(int xp) {}
 
     @Override
-    public boolean showProgressBar() { return false; }
+    public boolean showProgressBar() {
+        return false;
+    }
 
     @Override
-    public SoundEvent getNotifyTradeSound() { return null; }
+    public SoundEvent getNotifyTradeSound() {
+        return null;
+    }
 
     @Override
-    public boolean isClientSide() { return false; }
+    public boolean isClientSide() {
+        return false;
+    }
 
     @Override
     public void notifyTrade(MerchantOffer offer) {
@@ -99,5 +116,7 @@ public class RumarukaMob extends PathfinderMob implements net.minecraft.world.it
     }
 
     @SubscribeEvent
-    public static void entityAttributes(EntityAttributeCreationEvent event) { event.put(EntitiesMI.RUMARUKA_MOB, RumarukaMob.createAttributes().build()); }
+    public static void entityAttributes(EntityAttributeCreationEvent event) {
+        event.put(EntitiesMI.RUMARUKA_MOB, RumarukaMob.createAttributes().build());
+    }
 }
