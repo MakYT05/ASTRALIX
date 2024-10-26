@@ -1,5 +1,7 @@
 package org.zeith.modid;
 
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -9,17 +11,15 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.zeith.hammerlib.api.items.CreativeTab;
 import org.zeith.hammerlib.core.adapter.LanguageAdapter;
-import org.zeith.hammerlib.core.init.ItemsHL;
 import org.zeith.hammerlib.proxy.HLConstants;
 import org.zeith.modid.client.ModEntityRenderers;
 import org.zeith.modid.custom.entyties.AstralZombieMod;
 import org.zeith.modid.custom.entyties.MoontlexMob;
 import org.zeith.modid.custom.entyties.RumarukaMob;
+import org.zeith.modid.custom.entyties.ZeithMob;
 import org.zeith.modid.datagen.LootTableModifier;
 import org.zeith.modid.datagen.ModWorldGenProvider;
-import org.zeith.modid.custom.entyties.ZeithMob;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
+import org.zeith.modid.init.ItemsMI;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -31,7 +31,7 @@ public class Astralix
 	@CreativeTab.RegisterTab
 	public static final CreativeTab MOD_TAB = new CreativeTab(id("astralix"),
 			builder -> builder
-					.icon(() -> ItemsHL.COPPER_GEAR.getDefaultInstance())
+					.icon(() -> ItemsMI.ASTRALCOIN.getDefaultInstance())
 					.withTabsBefore(HLConstants.HL_TAB.id())
 	);
 

@@ -27,7 +27,7 @@ public interface EntitiesMI {
 
     @RegistryName("astral_zombie")
     EntityType<AstralZombieMod> ASTRAL_ZOMBIE = EntityType.Builder.of(AstralZombieMod::new, MobCategory.MONSTER)
-            .sized(1F, 1.5F)
+            .sized(0.6F, 1.8F)
             .build("astral_zombie");
 
     @RegistryName("rumaruka_mob")
