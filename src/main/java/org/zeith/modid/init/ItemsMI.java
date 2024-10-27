@@ -42,4 +42,7 @@ public interface ItemsMI{
 
 	@RegistryName("astral_beer")
 	Item ASTRAL_BEER = Astralix.MOD_TAB.add(new Astral_Beer(new Item.Properties()));
+
+	@RegistryName("astral_scepter")
+	Item ASTRAL_SCEPTER = Astralix.MOD_TAB.add(new Astral_Scepter(new Item.Properties()));
 }

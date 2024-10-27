@@ -15,6 +15,13 @@ public interface EntitiesMI {
             .setUpdateInterval(1)
             .build("lightning_ball");
 
+    @RegistryName("meteorite")
+    EntityType<Meteorite> METEORITE = EntityType.Builder.<Meteorite>of(Meteorite::new, MobCategory.MISC)
+            .sized(2F, 2F)
+            .setTrackingRange(80)
+            .setUpdateInterval(1)
+            .build("meteorite");
+
     @RegistryName("zeith_mob")
     EntityType<ZeithMob> ZEITH_MOB = EntityType.Builder.of(ZeithMob::new, MobCategory.MONSTER)
             .sized(1F, 1.5F)

@@ -15,9 +15,7 @@ import org.zeith.modid.init.EntitiesMI;
 public class LightningBoltProjectile extends ThrowableProjectile {
     private static final double SPEED = 2.5D;
 
-    public LightningBoltProjectile(EntityType<? extends ThrowableProjectile> entityType, Level level) {
-        super(entityType, level);
-    }
+    public LightningBoltProjectile(EntityType<? extends ThrowableProjectile> entityType, Level level) { super(entityType, level); }
 
     public LightningBoltProjectile(Level level, Player player) {
         super(EntitiesMI.LIGHTNING_BALL, level);

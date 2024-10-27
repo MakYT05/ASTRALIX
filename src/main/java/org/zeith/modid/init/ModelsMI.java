@@ -6,6 +6,9 @@ import org.zeith.hammerlib.annotations.SimplyRegister;
 
 @SimplyRegister
 public interface ModelsMI {
+    @RegistryName("meteorite")
+    IGeometryContainer METEORITE_MODEL = IGeometryContainer.createNoSuffix();
+
     @RegistryName("zeith_mob")
     IGeometryContainer ZEITH_MOB_MODEL = IGeometryContainer.createNoSuffix();
 
