@@ -1,5 +1,6 @@
 package org.zeith.modid;
 
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -13,10 +14,15 @@ import org.zeith.hammerlib.api.items.CreativeTab;
 import org.zeith.hammerlib.core.adapter.LanguageAdapter;
 import org.zeith.hammerlib.proxy.HLConstants;
 import org.zeith.modid.client.ModEntityRenderers;
-import org.zeith.modid.custom.entyties.*;
+import org.zeith.modid.custom.entyties.AstralZombieMod;
+import org.zeith.modid.custom.entyties.MoontlexMob;
+import org.zeith.modid.custom.entyties.RumarukaMob;
+import org.zeith.modid.custom.entyties.ZeithMob;
 import org.zeith.modid.datagen.LootTableModifier;
 import org.zeith.modid.datagen.ModWorldGenProvider;
 import org.zeith.modid.init.ItemsMI;
+import org.zeith.modid.menu.CustomMenuTypes;
+import org.zeith.modid.menu.CustomScreen;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -46,11 +52,16 @@ public class Astralix
 		bus.addListener(RumarukaMob::entityAttributes);
 
 		bus.addListener(this::gatherData);
+
+		CustomMenuTypes.CONTAINER_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
 	}
 
 	private static void clientSetup(final FMLClientSetupEvent event) {
 		ModEntityRenderers.registerRenderers();
+
 		MinecraftForge.EVENT_BUS.addListener(LootTableModifier::onLootTableLoad);
+
+		MenuScreens.register(CustomMenuTypes.CUSTOM_MENU.get(), CustomScreen::new);
 	}
 
 	private void gatherData(GatherDataEvent event)
