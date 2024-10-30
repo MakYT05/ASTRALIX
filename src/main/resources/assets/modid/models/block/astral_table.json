@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "modid:block/astral_table_bottom",
+    "up": "modid:block/astral_table_top",
+    "north": "modid:block/astral_table_side",
+    "south": "modid:block/astral_table_side",
+    "west": "modid:block/astral_table_side",
+    "east": "modid:block/astral_table_side"
+  }
+}

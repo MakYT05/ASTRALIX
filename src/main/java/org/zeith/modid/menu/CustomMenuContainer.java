@@ -8,17 +8,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import org.zeith.modid.recipe.CustomRecipeRegistry;
 
 public class CustomMenuContainer extends AbstractContainerMenu {
 
+    private final IItemHandler itemHandler;
+
     public CustomMenuContainer(int id, Inventory inventory) {
         super(CustomMenuTypes.CUSTOM_MENU.get(), id);
-        IItemHandler itemHandler = new ItemStackHandler(4);
+        this.itemHandler = new ItemStackHandler(3);
 
-        this.addSlot(new SlotItemHandler(itemHandler, 0, 62, 17));
-        for (int i = 1; i <= 3; i++) {
-            this.addSlot(new SlotItemHandler(itemHandler, i, 30 + (i - 1) * 18, 42));
-        }
+        this.addSlot(new SlotItemHandler(itemHandler, 0, 56, 17));
+        this.addSlot(new SlotItemHandler(itemHandler, 1, 56, 53));
+        this.addSlot(new SlotItemHandler(itemHandler, 2, 116, 35));
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 9; j++) {
@@ -32,30 +34,23 @@ public class CustomMenuContainer extends AbstractContainerMenu {
     }
 
     @Override
-    public ItemStack quickMoveStack(Player player, int index) {
-        ItemStack stack = ItemStack.EMPTY;
-        Slot slot = this.slots.get(index);
+    public void broadcastChanges() {
+        super.broadcastChanges();
 
-        if (slot != null && slot.hasItem()) {
-            ItemStack slotStack = slot.getItem();
-            stack = slotStack.copy();
+        ItemStack input1 = itemHandler.getStackInSlot(0);
+        ItemStack input2 = itemHandler.getStackInSlot(1);
+        ItemStack result = CustomRecipeRegistry.getCraftingResult(input1, input2);
 
-            if (index < 4) {
-                if (!this.moveItemStackTo(slotStack, 4, this.slots.size(), true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (!this.moveItemStackTo(slotStack, 0, 4, false)) {
-                return ItemStack.EMPTY;
-            }
-
-            if (slotStack.isEmpty()) {
-                slot.set(ItemStack.EMPTY);
-            } else {
-                slot.setChanged();
-            }
+        if (!result.isEmpty()) {
+            itemHandler.insertItem(2, result.copy(), false);
+        } else {
+            itemHandler.extractItem(2, itemHandler.getStackInSlot(2).getCount(), false);
         }
+    }
 
-        return stack;
+    @Override
+    public ItemStack quickMoveStack(Player player, int index) {
+        return ItemStack.EMPTY;
     }
 
     @Override

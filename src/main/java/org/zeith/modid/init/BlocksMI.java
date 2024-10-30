@@ -30,4 +30,7 @@ public interface BlocksMI
 
     @RegistryName("sapling_astral")
     SaplingBlock SAPLING_ASTRAL = Astralix.MOD_TAB.add(new SaplingBlock(new PineTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+
+    @RegistryName("astral_table")
+    Block ASTRAL_TABLE = Astralix.MOD_TAB.add(new AstralTable());
 }

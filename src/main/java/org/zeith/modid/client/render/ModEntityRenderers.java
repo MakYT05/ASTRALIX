@@ -1,4 +1,4 @@
-package org.zeith.modid.client;
+package org.zeith.modid.client.render;
 
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import org.zeith.modid.client.entity.*;

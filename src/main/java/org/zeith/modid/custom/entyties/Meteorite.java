@@ -7,8 +7,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ThrowableProjectile;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.HorizontalDirectionalBlock;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.zeith.modid.init.EntitiesMI;
@@ -16,17 +14,18 @@ import org.zeith.modid.init.EntitiesMI;
 public class Meteorite extends ThrowableProjectile {
     private static final double SPEED = 2.5D;
 
-    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-
     public Meteorite(EntityType<? extends ThrowableProjectile> entityType, Level level) {
         super(entityType, level);
     }
 
     public Meteorite(Level level, Player player) {
         super(EntitiesMI.METEORITE, level);
+
         Vec3 lookDirection = player.getLookAngle();
-        this.setDeltaMovement(lookDirection.scale(SPEED));
+
         this.setPos(player.getX(), player.getY() + player.getEyeHeight(), player.getZ());
+
+        this.shoot(lookDirection.x, lookDirection.y, lookDirection.z, (float) SPEED, 0);
     }
 
     @Override
@@ -50,8 +49,9 @@ public class Meteorite extends ThrowableProjectile {
 
     @Override
     public void tick() {
-        Vec3 direction = this.getDeltaMovement();
-        this.setPos(this.getX() + direction.x, this.getY() + direction.y, this.getZ());
+        super.tick();
+
+        this.setNoGravity(true);
 
         if (this.level().isClientSide) {
             RandomSource random = this.level().random;
@@ -68,9 +68,6 @@ public class Meteorite extends ThrowableProjectile {
         if (this.isInWater()) {
             this.discard();
         }
-        this.setNoGravity(true);
-
-        super.tick();
     }
 
     @Override
