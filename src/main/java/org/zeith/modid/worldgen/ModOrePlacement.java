@@ -10,6 +10,7 @@ public class ModOrePlacement {
         return List.of(p_195347_, InSquarePlacement.spread(), p_195348_, BiomeFilter.biome());
     }
 
+    @SubscribeEvent
     public static List<PlacementModifier> commonOrePlacement(int pCount, PlacementModifier pHeightRange) {
         return orePlacement(CountPlacement.of(pCount), pHeightRange);
     }
