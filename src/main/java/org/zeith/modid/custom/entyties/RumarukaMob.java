@@ -24,13 +24,17 @@ import org.zeith.modid.init.ItemsMI;
 
 public class RumarukaMob extends PathfinderMob implements net.minecraft.world.item.trading.Merchant {
     private final MerchantOffers offers = new MerchantOffers();
+
     private Player tradingPlayer;
 
     public RumarukaMob(EntityType<? extends PathfinderMob> type, Level world) {
         super(type, world);
+        updateOffers();
+    }
 
-        offers.add(new MerchantOffer(new ItemStack(ItemsMI.ASTRALCOIN, 3), new ItemStack(Items.EMERALD, 3), 10, 2, 0.05F));
-        offers.add(new MerchantOffer(new ItemStack(ItemsMI.ASTRALCOIN, 5), new ItemStack(Items.DIAMOND, 1), 10, 2, 0.05F));
+    private void updateOffers() {
+        offers.add(new MerchantOffer(new ItemStack(ItemsMI.ASTRALCOIN, 3), new ItemStack(ItemsMI.ASTRAL_BEER, 1), 10, 2, 0.05F));
+        offers.add(new MerchantOffer(new ItemStack(Items.EMERALD, 5), new ItemStack(Items.GOLD_INGOT, 2), 10, 2, 0.05F));
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -51,8 +55,9 @@ public class RumarukaMob extends PathfinderMob implements net.minecraft.world.it
     @Override
     public InteractionResult interactAt(Player player, net.minecraft.world.phys.Vec3 vec, InteractionHand hand) {
         if (!this.level().isClientSide && hand == InteractionHand.MAIN_HAND) {
-
             this.tradingPlayer = player;
+
+            updateOffers();
 
             MenuProvider container = new SimpleMenuProvider(
                     (id, inventory, p) -> new MerchantMenu(id, inventory, this),
@@ -70,50 +75,34 @@ public class RumarukaMob extends PathfinderMob implements net.minecraft.world.it
     }
 
     @Override
-    public void overrideOffers(MerchantOffers p_45306_) {}
+    public void overrideOffers(MerchantOffers offers) {}
 
     @Override
-    public void setTradingPlayer(Player player) {
-        this.tradingPlayer = player;
-    }
+    public void setTradingPlayer(Player player) { this.tradingPlayer = player; }
 
     @Override
-    public Player getTradingPlayer() {
-        return this.tradingPlayer;
-    }
+    public Player getTradingPlayer() { return this.tradingPlayer; }
 
     @Override
-    public int getVillagerXp() {
-        return 10;
-    }
+    public int getVillagerXp() { return 10; }
 
     @Override
     public void overrideXp(int xp) {}
 
     @Override
-    public boolean showProgressBar() {
-        return false;
-    }
+    public boolean showProgressBar() { return false; }
 
     @Override
-    public SoundEvent getNotifyTradeSound() {
-        return null;
-    }
+    public SoundEvent getNotifyTradeSound() { return null; }
 
     @Override
-    public boolean isClientSide() {
-        return false;
-    }
+    public boolean isClientSide() { return false; }
 
     @Override
-    public void notifyTrade(MerchantOffer offer) {
-        // Вызывается при совершении сделки
-    }
+    public void notifyTrade(MerchantOffer offer) {}
 
     @Override
-    public void notifyTradeUpdated(ItemStack stack) {
-        // Вызывается при обновлении предложения
-    }
+    public void notifyTradeUpdated(ItemStack stack) {}
 
     @SubscribeEvent
     public static void entityAttributes(EntityAttributeCreationEvent event) {

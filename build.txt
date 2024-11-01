@@ -1,13 +1,13 @@
 # Mod Info
-mod_version=20.1.217
+mod_version=20.1.222
 build_candidate=false
 
 # Mod dependencies (jei is not a requirement, but HammerLib is)
 hl_version=20.1.29
 jei_version=15.2.0.22
-# hammeranims_version=20.1.16
-# terrablender_version=3.0.0.169
-# terrablender_version_range=[3.0.0.169,)
+hammeranims_version=20.1.16
+terrablender_version=3.0.0.169
+terrablender_version_range=[3.0.0.169,)
 
 # Persistent mod info
 mod_id=modid

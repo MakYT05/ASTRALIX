@@ -14,6 +14,7 @@ import org.zeith.hammerlib.api.items.CreativeTab;
 import org.zeith.hammerlib.core.adapter.LanguageAdapter;
 import org.zeith.hammerlib.proxy.HLConstants;
 import org.zeith.modid.client.render.ModEntityRenderers;
+import org.zeith.modid.container.MyContainerScreen;
 import org.zeith.modid.custom.entyties.AstralZombieMod;
 import org.zeith.modid.custom.entyties.MoontlexMob;
 import org.zeith.modid.custom.entyties.RumarukaMob;
@@ -62,6 +63,7 @@ public class Astralix
 		MinecraftForge.EVENT_BUS.addListener(LootTableModifier::onLootTableLoad);
 
 		MenuScreens.register(CustomMenuTypes.CUSTOM_MENU.get(), CustomScreen::new);
+		MenuScreens.register(CustomMenuTypes.MY_CONTAINER.get(), MyContainerScreen::new);
 
 		CustomRecipeRegistry.registerRecipes();
 	}

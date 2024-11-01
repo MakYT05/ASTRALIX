@@ -13,7 +13,7 @@ public class ManaOverlay {
 
     private ManaOverlay() {}
 
-    private static final int MAX_MANA = 100;
+    public static int MAX_MANA = 100;
     public static int currentMana = 0;
     private static final int MANA_BAR_WIDTH = 81;
     private static final int MANA_BAR_HEIGHT = 9;
