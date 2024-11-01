@@ -13,6 +13,7 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.zeith.modid.client.mana.ManaOverlay;
 
 import java.util.List;
 
@@ -26,28 +27,28 @@ public class FireAxeItem extends AxeItem
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand)
     {
-        if (!world.isClientSide && player instanceof ServerPlayer)
-        {
-            Vec3 lookVec = player.getLookAngle();
-            Vec3 playerPos = player.position();
+        if (!world.isClientSide && player instanceof ServerPlayer) {
+            if (ManaOverlay.currentMana >= 30) {
+                Vec3 lookVec = player.getLookAngle();
+                Vec3 playerPos = player.position();
 
-            Vec3 targetPos = playerPos.add(lookVec.scale(5));
-            BlockPos targetBlockPos = new BlockPos((int) targetPos.x(), (int) targetPos.y(), (int) targetPos.z());
+                Vec3 targetPos = playerPos.add(lookVec.scale(5));
+                BlockPos targetBlockPos = new BlockPos((int) targetPos.x(), (int) targetPos.y(), (int) targetPos.z());
 
-            player.getCooldowns().addCooldown(this, 100);
+                player.getCooldowns().addCooldown(this, 100);
 
-            AABB area = new AABB(targetBlockPos).inflate(5);
+                AABB area = new AABB(targetBlockPos).inflate(5);
 
-            List<LivingEntity> entitiesInRange = world.getEntitiesOfClass(LivingEntity.class, area, entity -> entity != player);
+                List<LivingEntity> entitiesInRange = world.getEntitiesOfClass(LivingEntity.class, area, entity -> entity != player);
 
-            for (LivingEntity entity : entitiesInRange)
-            {
-                entity.setSecondsOnFire(5);
+                for (LivingEntity entity : entitiesInRange) {
+                    entity.setSecondsOnFire(5);
+                }
+                ManaOverlay.currentMana -= 30;
+
+                return InteractionResultHolder.success(player.getItemInHand(hand));
             }
-
-            return InteractionResultHolder.success(player.getItemInHand(hand));
         }
-
         return InteractionResultHolder.pass(player.getItemInHand(hand));
     }
 }

@@ -1,6 +1,7 @@
 package org.zeith.modid.worldgen;
 
 import net.minecraft.world.level.levelgen.placement.*;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class ModOrePlacement {
         return orePlacement(CountPlacement.of(pCount), pHeightRange);
     }
 
+    @SubscribeEvent
     public static List<PlacementModifier> rareOrePlacement(int pChance, PlacementModifier pHeightRange) {
         return orePlacement(RarityFilter.onAverageOnceEvery(pChance), pHeightRange);
     }

@@ -11,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.zeith.modid.client.mana.ManaOverlay;
 
 public class EnderSwordItem extends SwordItem
 {
@@ -22,27 +23,26 @@ public class EnderSwordItem extends SwordItem
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand)
     {
-        if (!world.isClientSide && player instanceof ServerPlayer serverPlayer)
-        {
-            Vec3 lookVec = player.getLookAngle().scale(5);
-            Vec3 targetPos = player.position().add(lookVec);
+        if (!world.isClientSide && player instanceof ServerPlayer serverPlayer) {
+            if (ManaOverlay.currentMana > 10) {
+                Vec3 lookVec = player.getLookAngle().scale(5);
+                Vec3 targetPos = player.position().add(lookVec);
 
-            player.getCooldowns().addCooldown(this, 100);
-            BlockPos targetBlockPos = new BlockPos((int) targetPos.x(), (int) targetPos.y(), (int) targetPos.z());
+                player.getCooldowns().addCooldown(this, 100);
+                BlockPos targetBlockPos = new BlockPos((int) targetPos.x(), (int) targetPos.y(), (int) targetPos.z());
 
-            if (!world.isEmptyBlock(targetBlockPos))
-            {
-                BlockPos safePos = findSafePosition(world, player, targetBlockPos, lookVec);
-                if (safePos != null)
-                {
-                    serverPlayer.teleportTo(safePos.getX() + 0.5, safePos.getY(), safePos.getZ() + 0.5);
+                ManaOverlay.currentMana -= 10;
+
+                if (!world.isEmptyBlock(targetBlockPos)) {
+                    BlockPos safePos = findSafePosition(world, player, targetBlockPos, lookVec);
+                    if (safePos != null) {
+                        serverPlayer.teleportTo(safePos.getX() + 0.5, safePos.getY(), safePos.getZ() + 0.5);
+                        return InteractionResultHolder.success(player.getItemInHand(hand));
+                    }
+                } else {
+                    serverPlayer.teleportTo(targetPos.x(), targetPos.y(), targetPos.z());
                     return InteractionResultHolder.success(player.getItemInHand(hand));
                 }
-            }
-            else
-            {
-                serverPlayer.teleportTo(targetPos.x(), targetPos.y(), targetPos.z());
-                return InteractionResultHolder.success(player.getItemInHand(hand));
             }
         }
         return InteractionResultHolder.pass(player.getItemInHand(hand));

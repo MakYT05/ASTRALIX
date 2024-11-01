@@ -8,28 +8,35 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import org.zeith.modid.client.mana.ManaOverlay;
 import org.zeith.modid.custom.entyties.Meteorite;
 
 public class Astral_Scepter extends Item {
-    public Astral_Scepter(Properties properties) { super(properties); }
+    public Astral_Scepter(Properties properties) {
+        super(properties);
+    }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
         if (!level.isClientSide) {
-            if (level instanceof ServerLevel serverLevel) {
-                Vec3 startPos = player.getEyePosition();
-                Vec3 lookVector = player.getLookAngle();
+            if (ManaOverlay.currentMana >= 50) {
+                if (level instanceof ServerLevel serverLevel) {
+                    Vec3 startPos = player.getEyePosition();
+                    Vec3 lookVector = player.getLookAngle();
 
-                player.getCooldowns().addCooldown(this, 100);
+                    player.getCooldowns().addCooldown(this, 100);
 
-                Meteorite projectile = new Meteorite(serverLevel, player);
-                projectile.setPos(startPos.x, startPos.y, startPos.z);
-                projectile.shoot(lookVector.x, lookVector.y, lookVector.z, 1.5f, 0);
-                serverLevel.addFreshEntity(projectile);
+                    Meteorite projectile = new Meteorite(serverLevel, player);
+                    projectile.setPos(startPos.x, startPos.y, startPos.z);
+                    projectile.shoot(lookVector.x, lookVector.y, lookVector.z, 1.5f, 0);
+                    serverLevel.addFreshEntity(projectile);
 
-                stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
+                    stack.hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(hand));
+
+                    ManaOverlay.currentMana -= 50;
+                }
             }
         }
         return InteractionResultHolder.success(stack);

@@ -11,6 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.core.BlockPos;
+import org.zeith.modid.client.mana.ManaOverlay;
 
 public class ZeithEggItem extends Item {
     private final EntityType<?> type;
@@ -25,20 +26,22 @@ public class ZeithEggItem extends Item {
         Level world = context.getLevel();
 
         if (!world.isClientSide()) {
-            ServerLevel serverWorld = (ServerLevel) world;
-            BlockPos clickedPos = context.getClickedPos();
-            Player player = context.getPlayer();
+            if (ManaOverlay.currentMana >= 100) {
+                ServerLevel serverWorld = (ServerLevel) world;
+                BlockPos clickedPos = context.getClickedPos();
+                Player player = context.getPlayer();
 
-            type.spawn(serverWorld, null, player, clickedPos, MobSpawnType.SPAWN_EGG, true, false);
+                type.spawn(serverWorld, null, player, clickedPos, MobSpawnType.SPAWN_EGG, true, false);
 
-            if (player != null)
-            {
-                applyGoldenAppleEffects(player);
+                if (player != null) {
+                    applyGoldenAppleEffects(player);
+                }
+
+                context.getItemInHand().hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(context.getHand()));
+
+                ManaOverlay.currentMana -= 100;
             }
-
-            context.getItemInHand().hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(context.getHand()));
         }
-
         return InteractionResult.sidedSuccess(world.isClientSide());
     }
 

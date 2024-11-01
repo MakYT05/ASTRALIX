@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.zeith.modid.client.mana.ManaOverlay;
 
 import java.util.List;
 
@@ -28,25 +29,28 @@ public class DarkBrade extends SwordItem
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand)
     {
-        if (!world.isClientSide && player instanceof ServerPlayer serverPlayer)
-        {
-            Vec3 lookVec = player.getLookAngle();
-            Vec3 playerPos = player.position();
-            Vec3 targetPos = playerPos.add(lookVec.scale(5));
+        if (!world.isClientSide && player instanceof ServerPlayer serverPlayer) {
+            if (ManaOverlay.currentMana >= 30) {
+                Vec3 lookVec = player.getLookAngle();
+                Vec3 playerPos = player.position();
+                Vec3 targetPos = playerPos.add(lookVec.scale(5));
 
-            AABB searchBox = new AABB(playerPos, targetPos).inflate(1.0);
+                AABB searchBox = new AABB(playerPos, targetPos).inflate(1.0);
 
-            List<Entity> entities = world.getEntities(player, searchBox, entity -> entity instanceof LivingEntity);
+                List<Entity> entities = world.getEntities(player, searchBox, entity -> entity instanceof LivingEntity);
 
-            for (Entity entity : entities)
-            {
-                if (entity instanceof LivingEntity livingEntity) { livingEntity.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 3)); }
+                for (Entity entity : entities)
+                {
+                    if (entity instanceof LivingEntity livingEntity) { livingEntity.addEffect(new MobEffectInstance(MobEffects.WITHER, 100, 3)); }
+                }
+
+                player.getCooldowns().addCooldown(this, 60);
+
+                ManaOverlay.currentMana -= 30;
+
+                return InteractionResultHolder.success(player.getItemInHand(hand));
             }
-
-            player.getCooldowns().addCooldown(this, 60);
-            return InteractionResultHolder.success(player.getItemInHand(hand));
         }
-
         return InteractionResultHolder.pass(player.getItemInHand(hand));
     }
 }
