@@ -22,7 +22,7 @@ public class MyContainer extends AbstractContainerMenu {
             addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
         }
 
-        addSlot(new Slot(playerInventory, 0, 80, 40) {
+        addSlot(new Slot(playerInventory, 36, 80, 40) {
             @Override
             public boolean mayPlace(ItemStack stack) { return stack.getItem() instanceof AstralAmulet; }
         });

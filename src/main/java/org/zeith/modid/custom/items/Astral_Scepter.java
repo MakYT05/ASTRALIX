@@ -12,9 +12,7 @@ import org.zeith.modid.client.mana.ManaOverlay;
 import org.zeith.modid.custom.entyties.Meteorite;
 
 public class Astral_Scepter extends Item {
-    public Astral_Scepter(Properties properties) {
-        super(properties);
-    }
+    public Astral_Scepter(Properties properties) { super(properties); }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {

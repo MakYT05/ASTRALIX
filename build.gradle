@@ -154,6 +154,11 @@ repositories {
             includeGroupByRegex "mezz\\.jei.*"
         }
     }
+    maven {
+        name = 'sponge'
+        url = 'https://repo.spongepowered.org/maven'
+    }
+    maven { url 'https://maven.architectury.dev/' }
     flatDir { dirs "libraries/${config.mc_version}/all" }
     flatDir { dirs "libraries/${config.mc_version}/classpathOnly" }
     flatDir { dirs "libraries/${config.mc_version}/runtimeOnly" }
@@ -165,6 +170,7 @@ dependencies {
 
     implementation fg.deobf("org.zeith.hammerlib:HammerLib-${config.mc_version}:${config.hl_version}")
     implementation fg.deobf("org.zeith.hammeranims:HammerAnimations-1.20.1:20.1.16")
+    implementation fg.deobf("com.terraformersmc:terrablender-forge:3.0.0.169")
 
     compileOnly fg.deobf("mezz.jei:jei-${config.mc_version}-common-api:${config.jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${config.mc_version}-forge-api:${config.jei_version}")

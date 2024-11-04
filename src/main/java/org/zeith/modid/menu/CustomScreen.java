@@ -28,11 +28,4 @@ public class CustomScreen extends AbstractContainerScreen<CustomMenuContainer> {
     public void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         guiGraphics.drawString(this.font, this.title.getString(), this.titleLabelX, this.titleLabelY, 0xFFFF00FF);
     }
-
-    //@Override
-    //public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
-    //    this.renderBg(guiGraphics, partialTicks, mouseX, mouseY);
-    //    super.render(guiGraphics, mouseX, mouseY, partialTicks);
-    //    this.renderLabels(guiGraphics, mouseX, mouseY);
-    //}
 }

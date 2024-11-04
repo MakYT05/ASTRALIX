@@ -28,7 +28,7 @@ public class ManaOverlay {
         if (minecraft.player == null) return;
 
         int scaledWidth = minecraft.getWindow().getGuiScaledWidth();
-        int x = scaledWidth - 130;
+        int x = scaledWidth - 140;
         int y = 10;
 
         var guiGraphics = event.getGuiGraphics();

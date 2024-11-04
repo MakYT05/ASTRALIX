@@ -1,11 +1,8 @@
 {
-  "parent": "minecraft:block/cube",
+  "parent": "minecraft:block/template_enchanting_table",
   "textures": {
-    "down": "modid:block/astral_table_bottom",
-    "up": "modid:block/astral_table_top",
-    "north": "modid:block/astral_table_side",
-    "south": "modid:block/astral_table_side",
-    "west": "modid:block/astral_table_side",
-    "east": "modid:block/astral_table_side"
+    "top": "modid:block/astral_table_top",
+    "bottom": "modid:block/astral_table_bottom",
+    "side": "modid:block/astral_table_side"
   }
 }
