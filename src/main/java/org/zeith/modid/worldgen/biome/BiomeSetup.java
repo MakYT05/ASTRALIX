@@ -6,7 +6,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class BiomeSetup {
-
     @SubscribeEvent
     public static void setupBiomes(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {

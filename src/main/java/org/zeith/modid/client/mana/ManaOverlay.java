@@ -15,8 +15,8 @@ public class ManaOverlay {
 
     public static int MAX_MANA = 100;
     public static int currentMana = 0;
-    private static final int MANA_BAR_WIDTH = 81;
-    private static final int MANA_BAR_HEIGHT = 9;
+    private static final int MANA_BAR_WIDTH = 61;
+    private static final int MANA_BAR_HEIGHT = 7;
     private static final int MANA_REGEN_RATE = 1;
     private static final int TICKS_PER_REGEN = 40;
     private static int tickCounter = 0;

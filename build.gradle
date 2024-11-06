@@ -170,13 +170,11 @@ dependencies {
 
     implementation fg.deobf("org.zeith.hammerlib:HammerLib-${config.mc_version}:${config.hl_version}")
     implementation fg.deobf("org.zeith.hammeranims:HammerAnimations-1.20.1:20.1.16")
-    implementation fg.deobf("com.terraformersmc:terrablender-forge:3.0.0.169")
+    //implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:3.0.0.169")
 
     compileOnly fg.deobf("mezz.jei:jei-${config.mc_version}-common-api:${config.jei_version}")
     compileOnly fg.deobf("mezz.jei:jei-${config.mc_version}-forge-api:${config.jei_version}")
     runtimeOnly fg.deobf("mezz.jei:jei-${config.mc_version}-forge:${config.jei_version}")
-
-    //implementation fg.deobf("com.github.glitchfiend:TerraBlender-forge:${config.mc_version}-${config.terrablender_version}")
 
     annotationProcessor("org.spongepowered:mixin:0.8.5:processor")
 
