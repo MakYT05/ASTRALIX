@@ -2,7 +2,8 @@ package org.zeith.modid.recipe;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import org.zeith.modid.custom.entyties.Meteorite;
+import org.zeith.modid.init.ItemsMI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,6 @@ public class CustomRecipeRegistry {
     }
 
     public static void registerRecipes() {
-        addRecipe(Items.DIAMOND, Items.COAL, new ItemStack(Items.DIAMOND_SWORD));
+        addRecipe(ItemsMI.ASTRAL_SCEPTER, ItemsMI.ASTRALSCRIPT, new ItemStack(ItemsMI.ASTRAL_SCEPTER, Meteorite.RADIUS = 10));
     }
 }

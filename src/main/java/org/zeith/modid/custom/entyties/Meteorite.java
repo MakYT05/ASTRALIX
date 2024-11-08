@@ -13,6 +13,7 @@ import org.zeith.modid.init.EntitiesMI;
 
 public class Meteorite extends ThrowableProjectile {
     private static final double SPEED = 2.5D;
+    public static int RADIUS = 5;
 
     public Meteorite(EntityType<? extends ThrowableProjectile> entityType, Level level) {
         super(entityType, level);
@@ -33,10 +34,9 @@ public class Meteorite extends ThrowableProjectile {
         if (!this.level().isClientSide) {
             this.level().explode(this, this.getX(), this.getY(), this.getZ(), 4.0F, Level.ExplosionInteraction.BLOCK);
 
-            int radius = 5;
-            for (int x = -radius; x <= radius; x++) {
-                for (int y = -radius; y <= radius; y++) {
-                    for (int z = -radius; z <= radius; z++) {
+            for (int x = -RADIUS; x <= RADIUS; x++) {
+                for (int y = -RADIUS; y <= RADIUS; y++) {
+                    for (int z = -RADIUS; z <= RADIUS; z++) {
                         if (this.level().getBlockState(this.blockPosition().offset(x, y, z)).isAir()) {
                             this.level().setBlockAndUpdate(this.blockPosition().offset(x, y, z), Blocks.FIRE.defaultBlockState());
                         }
