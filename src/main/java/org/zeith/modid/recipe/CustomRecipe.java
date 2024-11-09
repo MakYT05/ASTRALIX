@@ -14,17 +14,11 @@ public class CustomRecipe {
         this.result = result;
     }
 
-    public Item getInput1() {
-        return input1;
-    }
+    public Item getInput1() { return input1; }
 
-    public Item getInput2() {
-        return input2;
-    }
+    public Item getInput2() { return input2; }
 
-    public ItemStack getResult() {
-        return result;
-    }
+    public ItemStack getResult() { return result; }
 
     public boolean matches(ItemStack stack1, ItemStack stack2) {
         return stack1.getItem() == input1 && stack2.getItem() == input2;

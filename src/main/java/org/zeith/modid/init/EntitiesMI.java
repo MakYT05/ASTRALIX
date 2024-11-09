@@ -41,4 +41,11 @@ public interface EntitiesMI {
     EntityType<RumarukaMob> RUMARUKA_MOB = EntityType.Builder.of(RumarukaMob::new, MobCategory.MONSTER)
             .sized(0.6F, 1.8F)
             .build("rumaruka_mob");
+
+    @RegistryName("knife")
+    EntityType<Knife> KNIFE = EntityType.Builder.<Knife>of(Knife::new, MobCategory.MISC)
+            .sized(0.5F, 0.5F)
+            .setTrackingRange(80)
+            .setUpdateInterval(1)
+            .build("knife");
 }

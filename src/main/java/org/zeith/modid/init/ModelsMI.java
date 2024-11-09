@@ -20,4 +20,7 @@ public interface ModelsMI {
 
     @RegistryName("rumaruka_mob")
     IGeometryContainer RUMARUKA_MOB_MODEL = IGeometryContainer.createNoSuffix();
+
+    @RegistryName("knife")
+    IGeometryContainer KNIFE_MODEL = IGeometryContainer.createNoSuffix();
 }

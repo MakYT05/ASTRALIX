@@ -13,5 +13,6 @@ public class ModEntityRenderers {
         EntityRenderers.register(EntitiesMI.MOONTLEX_MOB, MoontlexMobRenderer::new);
         EntityRenderers.register(EntitiesMI.ASTRAL_ZOMBIE, AstralZombieRenderer::new);
         EntityRenderers.register(EntitiesMI.RUMARUKA_MOB, RumarukaMobRenderer::new);
+        EntityRenderers.register(EntitiesMI.KNIFE, KnifeRenderer::new);
     }
 }
