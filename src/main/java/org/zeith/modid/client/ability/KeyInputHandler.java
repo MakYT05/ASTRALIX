@@ -17,6 +17,5 @@ public class KeyInputHandler {
             event.setCanceled(true);  // Отменяем стандартное поведение ПКМ при переключении способности
         }
     }
-
     public static int getCurrentAbility() { return currentAbility; }
 }

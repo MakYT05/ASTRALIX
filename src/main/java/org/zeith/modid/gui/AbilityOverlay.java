@@ -16,8 +16,8 @@ public class AbilityOverlay {
         Minecraft mc = Minecraft.getInstance();
 
         if (mc.player != null && mc.player.getMainHandItem().getItem() instanceof Astral_Scepter) {
-            int x = mc.getWindow().getGuiScaledWidth() - 16;
-            int y = mc.getWindow().getGuiScaledHeight() - 16;
+            int x = mc.getWindow().getGuiScaledWidth() - 30;
+            int y = mc.getWindow().getGuiScaledHeight() - 30;
             int abilityIndex = KeyInputHandler.getCurrentAbility();
 
             RenderSystem.setShaderTexture(0, ICONS);
