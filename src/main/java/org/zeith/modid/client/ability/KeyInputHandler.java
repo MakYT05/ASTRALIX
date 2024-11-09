@@ -1,21 +1,28 @@
 package org.zeith.modid.client.ability;
 
-import net.minecraft.world.entity.player.Player;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraft.client.Minecraft;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import org.zeith.modid.custom.items.Astral_Scepter;
 
+@Mod.EventBusSubscriber(modid = "modid", value = Dist.CLIENT)
 public class KeyInputHandler {
-    private static int currentAbility = 0;  // Индекс текущей способности (0 = метеорит)
+    public static int currentAbility = 0;
 
     @SubscribeEvent
-    public static void onRightClick(PlayerInteractEvent.RightClickItem event) {
-        Player player = event.getEntity();
+    public static void onKeyInput(InputEvent.Key event) {
+        Minecraft mc = Minecraft.getInstance();
 
-        if (player.isShiftKeyDown() && player.getMainHandItem().getItem() instanceof Astral_Scepter) {
-            currentAbility = (currentAbility + 1) % 1; // Пока только одна способность
-            event.setCanceled(true);  // Отменяем стандартное поведение ПКМ при переключении способности
+        if (mc.player != null && mc.options.keyShift.isDown()) {
+            if (mc.player.getMainHandItem().getItem() instanceof Astral_Scepter) {
+                currentAbility = (currentAbility + 1) % 2;
+
+                event.setCanceled(true);
+            }
         }
     }
+
     public static int getCurrentAbility() { return currentAbility; }
 }

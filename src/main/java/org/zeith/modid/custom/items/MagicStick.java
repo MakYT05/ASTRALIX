@@ -49,13 +49,13 @@ public class MagicStick extends Item {
 
                         for (Entity entity : entities) {
                             if (entity instanceof LivingEntity target && entity != player) {
-                                target.hurt(player.damageSources().magic(), 2.0F);
+                                target.hurt(player.damageSources().magic(), 5.0F);
                                 return InteractionResultHolder.success(stack);
                             }
                         }
                     }
+                    ManaOverlay.currentMana -= 10;
                 }
-                ManaOverlay.currentMana -= 10;
             }
         }
         return InteractionResultHolder.success(stack);

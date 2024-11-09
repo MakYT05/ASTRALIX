@@ -39,7 +39,7 @@ public class CustomMenuContainer extends AbstractContainerMenu {
 
         ItemStack input1 = itemHandler.getStackInSlot(0);
         ItemStack input2 = itemHandler.getStackInSlot(1);
-        ItemStack result = CustomRecipeRegistry.getCraftingResult(input1, input2);
+        ItemStack result = CustomRecipeRegistry.craft(input1, input2);
 
         if (!result.isEmpty()) {
             itemHandler.insertItem(2, result.copy(), false);
