@@ -8,23 +8,26 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import org.zeith.modid.client.ability.KeyInputHandler;
 import org.zeith.modid.client.mana.ManaOverlay;
 import org.zeith.modid.custom.entyties.Knife;
 import org.zeith.modid.custom.entyties.Meteorite;
 import org.zeith.modid.init.EntitiesMI;
 
 public class Astral_Scepter extends Item {
+    public static int currentAbility = 0;
+
     public Astral_Scepter(Properties properties) { super(properties); }
+
+    public void switchAbility() { currentAbility = (currentAbility + 1) % 2; }
+
+    public int getCurrentAbility() { return currentAbility; }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
 
         if (!level.isClientSide) {
-            int selectedAbility = KeyInputHandler.getCurrentAbility();
-
-            if (selectedAbility == 0 && ManaOverlay.currentMana >= 50) {
+            if (currentAbility == 0 && ManaOverlay.currentMana >= 50) {
                 if (level instanceof ServerLevel serverLevel) {
                     Vec3 startPos = player.getEyePosition();
                     Vec3 lookVector = player.getLookAngle();
@@ -37,7 +40,7 @@ public class Astral_Scepter extends Item {
                     ManaOverlay.currentMana -= 50;
                     player.getCooldowns().addCooldown(this, 100);
                 }
-            } else if (selectedAbility == 1 && ManaOverlay.currentMana >= 20) {
+            } else if (currentAbility == 1 && ManaOverlay.currentMana >= 20) {
                 if (level instanceof ServerLevel serverLevel) {
                     Vec3 startPos = player.getEyePosition();
                     Vec3 lookVector = player.getLookAngle();

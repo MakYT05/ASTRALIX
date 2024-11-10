@@ -13,6 +13,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.zeith.hammerlib.api.items.CreativeTab;
 import org.zeith.hammerlib.core.adapter.LanguageAdapter;
 import org.zeith.hammerlib.proxy.HLConstants;
+import org.zeith.modid.client.ability.KeyInputHandler;
 import org.zeith.modid.client.render.ModEntityRenderers;
 import org.zeith.modid.container.MyContainerScreen;
 import org.zeith.modid.custom.entyties.AstralZombieMod;
@@ -66,6 +67,8 @@ public class Astralix
 		MenuScreens.register(CustomMenuTypes.MY_CONTAINER.get(), MyContainerScreen::new);
 
 		CustomRecipeRegistry.registerRecipes();
+
+		MinecraftForge.EVENT_BUS.register(KeyInputHandler.class);
 	}
 
 	private void gatherData(GatherDataEvent event)
