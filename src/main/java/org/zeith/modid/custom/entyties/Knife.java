@@ -29,7 +29,7 @@ public class Knife extends ThrowableProjectile {
 
         this.shoot(lookDirection.x, lookDirection.y, lookDirection.z, (float) SPEED, 0);
 
-        this.setRot(player.getYRot(), player.getXRot());
+        this.setRotationForDirection(lookDirection);
     }
 
     @Override
@@ -37,7 +37,6 @@ public class Knife extends ThrowableProjectile {
         if (!this.level().isClientSide) {
             if (result instanceof EntityHitResult entityHitResult) {
                 LivingEntity target = (LivingEntity) entityHitResult.getEntity();
-
                 MobEffectInstance poisonEffect = new MobEffectInstance(MobEffects.POISON, 400, 2);
                 target.addEffect(poisonEffect);
             }
@@ -50,6 +49,9 @@ public class Knife extends ThrowableProjectile {
         super.tick();
 
         this.setNoGravity(true);
+
+        Vec3 motion = this.getDeltaMovement();
+        this.setRotationForDirection(motion);
 
         if (this.level().isClientSide) {
             RandomSource random = this.level().random;
@@ -68,4 +70,11 @@ public class Knife extends ThrowableProjectile {
 
     @Override
     protected void defineSynchedData() {}
+
+    private void setRotationForDirection(Vec3 direction) {
+        this.setYRot((float) (Math.atan2(direction.x, direction.z) * (180F / Math.PI)));
+
+        double horizontalLength = Math.sqrt(direction.x * direction.x + direction.z * direction.z);
+        this.setXRot((float) (Math.atan2(direction.y, horizontalLength) * (180F / Math.PI)));
+    }
 }
