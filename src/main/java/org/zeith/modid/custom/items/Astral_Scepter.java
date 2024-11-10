@@ -11,7 +11,6 @@ import net.minecraft.world.phys.Vec3;
 import org.zeith.modid.client.mana.ManaOverlay;
 import org.zeith.modid.custom.entyties.Knife;
 import org.zeith.modid.custom.entyties.Meteorite;
-import org.zeith.modid.init.EntitiesMI;
 
 public class Astral_Scepter extends Item {
     public static int currentAbility = 0;
@@ -45,7 +44,7 @@ public class Astral_Scepter extends Item {
                     Vec3 startPos = player.getEyePosition();
                     Vec3 lookVector = player.getLookAngle();
 
-                    Knife knifeProjectile = new Knife(EntitiesMI.KNIFE, level);
+                    Knife knifeProjectile = new Knife(serverLevel, player);
                     knifeProjectile.setPos(startPos.x, startPos.y, startPos.z);
                     knifeProjectile.shoot(lookVector.x, lookVector.y, lookVector.z, 2.5f, 0);
                     serverLevel.addFreshEntity(knifeProjectile);

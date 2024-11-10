@@ -28,6 +28,8 @@ public class Knife extends ThrowableProjectile {
         this.setPos(player.getX(), player.getY() + player.getEyeHeight(), player.getZ());
 
         this.shoot(lookDirection.x, lookDirection.y, lookDirection.z, (float) SPEED, 0);
+
+        this.setRot(player.getYRot(), player.getXRot());
     }
 
     @Override
@@ -36,7 +38,7 @@ public class Knife extends ThrowableProjectile {
             if (result instanceof EntityHitResult entityHitResult) {
                 LivingEntity target = (LivingEntity) entityHitResult.getEntity();
 
-                MobEffectInstance poisonEffect = new MobEffectInstance(MobEffects.POISON, 100, 1);
+                MobEffectInstance poisonEffect = new MobEffectInstance(MobEffects.POISON, 400, 2);
                 target.addEffect(poisonEffect);
             }
             this.discard();

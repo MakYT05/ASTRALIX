@@ -17,6 +17,7 @@ public class AbilityOverlay {
     @SubscribeEvent
     public static void onRenderOverlay(RenderGuiOverlayEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
+
         if (Astral_Scepter.currentAbility == 0) {
             if (mc.player != null && mc.player.getMainHandItem().getItem() instanceof Astral_Scepter scepter) {
                 int x = mc.getWindow().getGuiScaledWidth() - 30;
@@ -33,7 +34,7 @@ public class AbilityOverlay {
                 int abilityIndex = scepter.getCurrentAbility();
 
                 RenderSystem.setShaderTexture(0, ICONS_KNIFE);
-                event.getGuiGraphics().blit(ICONS_KNIFE, x, y, abilityIndex * 16, 0, 16, 16, 64, 64);
+                event.getGuiGraphics().blit(ICONS_KNIFE, x, y, 0, 0, 16, 16, 64, 64);
             }
         }
     }
