@@ -1,6 +1,5 @@
 package org.zeith.modid.datagen;
 
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -15,12 +14,21 @@ public class LootTableModifier {
 
         if (event.getName().equals(fortressChest)) {
             LootTable table = event.getTable();
-            LootPool.Builder poolBuilder = LootPool.lootPool()
-                    .name("astralix_in_fortress")
-                    .setRolls(ConstantValue.exactly(4))
-                    .add(LootItem.lootTableItem(ForgeRegistries.ITEMS.getValue(new ResourceLocation("modid", "astral_block"))));
 
-            table.addPool(poolBuilder.build());
+            ResourceLocation astralBlockId = new ResourceLocation("modid", "astral_block");
+
+            if (ForgeRegistries.ITEMS.containsKey(astralBlockId)) {
+                var astralBlockItem = ForgeRegistries.ITEMS.getValue(astralBlockId);
+
+                if (astralBlockItem != null) {
+                    LootPool.Builder poolBuilder = LootPool.lootPool()
+                            .name("astralix_in_fortress")
+                            .setRolls(ConstantValue.exactly(4))
+                            .add(LootItem.lootTableItem(astralBlockItem));
+
+                    table.addPool(poolBuilder.build());
+                }
+            }
         }
     }
 }

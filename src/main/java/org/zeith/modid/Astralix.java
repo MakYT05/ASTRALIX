@@ -30,8 +30,7 @@ import org.zeith.modid.recipe.CustomRecipeRegistry;
 import java.util.concurrent.CompletableFuture;
 
 @Mod(Astralix.MOD_ID)
-public class Astralix
-{
+public class Astralix {
 	public static final String MOD_ID = "modid";
 
 	@CreativeTab.RegisterTab
@@ -41,8 +40,7 @@ public class Astralix
 					.withTabsBefore(HLConstants.HL_TAB.id())
 	);
 
-	public Astralix()
-	{
+	public Astralix() {
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
 		LanguageAdapter.registerMod(MOD_ID);
@@ -71,8 +69,7 @@ public class Astralix
 		MinecraftForge.EVENT_BUS.register(KeyInputHandler.class);
 	}
 
-	private void gatherData(GatherDataEvent event)
-	{
+	private void gatherData(GatherDataEvent event) {
 		PackOutput packOutput = event.getGenerator().getPackOutput();
 		CompletableFuture<HolderLookup.Provider> future = event.getLookupProvider();
 		event.getGenerator().addProvider(event.includeServer(), new ModWorldGenProvider(packOutput, future));
