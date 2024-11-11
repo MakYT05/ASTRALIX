@@ -54,4 +54,7 @@ public interface ItemsMI{
 
 	@RegistryName("astralscript")
 	Item ASTRALSCRIPT = Astralix.MOD_TAB.add(new Item(new Item.Properties().rarity(Rarity.EPIC)));
+
+	@RegistryName("astral_sword")
+	Item ASTRAL_SWORD = Astralix.MOD_TAB.add(new AstralSword(new Item.Properties().rarity(Rarity.EPIC)));
 }
