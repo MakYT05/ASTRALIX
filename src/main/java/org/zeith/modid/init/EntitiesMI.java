@@ -48,11 +48,4 @@ public interface EntitiesMI {
             .setTrackingRange(80)
             .setUpdateInterval(1)
             .build("knife");
-
-    @RegistryName("sword_ent")
-    EntityType<SwordEnt> SWORD_ENT = EntityType.Builder.<SwordEnt>of(SwordEnt::new, MobCategory.MISC)
-            .sized(0.5F, 0.5F)
-            .setTrackingRange(80)
-            .setUpdateInterval(1)
-            .build("sword_ent");
 }

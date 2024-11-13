@@ -33,25 +33,15 @@ public class Knife extends ThrowableProjectile {
     }
 
     @Override
-    protected void onHit(HitResult result) {
-        if (!this.level().isClientSide) {
-            if (result instanceof EntityHitResult entityHitResult) {
-                LivingEntity target = (LivingEntity) entityHitResult.getEntity();
-                MobEffectInstance poisonEffect = new MobEffectInstance(MobEffects.POISON, 400, 2);
-                target.addEffect(poisonEffect);
-            }
-            this.discard();
-        }
-    }
-
-    @Override
     public void tick() {
         super.tick();
 
         this.setNoGravity(true);
 
         Vec3 motion = this.getDeltaMovement();
-        this.setRotationForDirection(motion);
+        if (!motion.equals(Vec3.ZERO)) {
+            this.setRotationForDirection(motion);
+        }
 
         if (this.level().isClientSide) {
             RandomSource random = this.level().random;
@@ -64,6 +54,18 @@ public class Knife extends ThrowableProjectile {
         }
 
         if (this.isInWater()) {
+            this.discard();
+        }
+    }
+
+    @Override
+    protected void onHit(HitResult result) {
+        if (!this.level().isClientSide) {
+            if (result instanceof EntityHitResult entityHitResult) {
+                LivingEntity target = (LivingEntity) entityHitResult.getEntity();
+                MobEffectInstance poisonEffect = new MobEffectInstance(MobEffects.POISON, 400, 2);
+                target.addEffect(poisonEffect);
+            }
             this.discard();
         }
     }

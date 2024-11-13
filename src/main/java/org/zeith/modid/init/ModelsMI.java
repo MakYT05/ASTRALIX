@@ -23,7 +23,4 @@ public interface ModelsMI {
 
     @RegistryName("knife")
     IGeometryContainer KNIFE_MODEL = IGeometryContainer.createNoSuffix();
-
-    @RegistryName("sword_ent")
-    IGeometryContainer SWORD_ENT_MODEL = IGeometryContainer.createNoSuffix();
 }
