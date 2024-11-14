@@ -57,4 +57,7 @@ public interface ItemsMI{
 
 	@RegistryName("astral_sword")
 	Item ASTRAL_SWORD = Astralix.MOD_TAB.add(new AstralSword(Tiers.DIAMOND, 10, 1.5F, new Item.Properties().rarity(Rarity.EPIC)));
+
+	@RegistryName("astral_spear")
+	Item ASTRAL_SPEAR = Astralix.MOD_TAB.add(new AstralSpear(Tiers.DIAMOND, 10, 1F, new Item.Properties().rarity(Rarity.EPIC)));
 }
