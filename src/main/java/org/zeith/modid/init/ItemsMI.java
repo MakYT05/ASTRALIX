@@ -44,17 +44,17 @@ public interface ItemsMI{
 	Item ASTRAL_BEER = Astralix.MOD_TAB.add(new Astral_Beer(new Item.Properties().rarity(Rarity.EPIC)));
 
 	@RegistryName("astral_scepter")
-	Item ASTRAL_SCEPTER = Astralix.MOD_TAB.add(new Astral_Scepter(new Item.Properties().rarity(Rarity.EPIC)));
+	Item ASTRAL_SCEPTER = Astralix.MOD_TAB.add(new Astral_Scepter(new Item.Properties().rarity(Rarity.EPIC).stacksTo(1)));
 
 	@RegistryName("astral_amulet")
 	Item ASTRAL_AMULET = Astralix.MOD_TAB.add(new AstralAmulet(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
 
 	@RegistryName("magic_stick")
-	Item MAGIC_STICK = Astralix.MOD_TAB.add(new MagicStick(new Item.Properties().rarity(Rarity.EPIC)));
+	Item MAGIC_STICK = Astralix.MOD_TAB.add(new MagicStick(new Item.Properties().rarity(Rarity.EPIC).stacksTo(1)));
 
 	@RegistryName("astralscript")
 	Item ASTRALSCRIPT = Astralix.MOD_TAB.add(new Item(new Item.Properties().rarity(Rarity.EPIC)));
 
 	@RegistryName("astral_sword")
-	Item ASTRAL_SWORD = Astralix.MOD_TAB.add(new AstralSword(new Item.Properties().rarity(Rarity.EPIC)));
+	Item ASTRAL_SWORD = Astralix.MOD_TAB.add(new AstralSword(Tiers.DIAMOND, 10, 1.5F, new Item.Properties().rarity(Rarity.EPIC)));
 }

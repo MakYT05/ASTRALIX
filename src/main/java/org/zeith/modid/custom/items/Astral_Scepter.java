@@ -31,7 +31,7 @@ public class Astral_Scepter extends Item {
                     Vec3 startPos = player.getEyePosition();
                     Vec3 lookVector = player.getLookAngle();
 
-                    Meteorite meteorite = new Meteorite(serverLevel, player);
+                    Meteorite meteorite = new Meteorite(serverLevel, player, 5);
                     meteorite.setPos(startPos.x, startPos.y, startPos.z);
                     meteorite.shoot(lookVector.x, lookVector.y, lookVector.z, 1.5f, 0);
                     serverLevel.addFreshEntity(meteorite);

@@ -30,6 +30,9 @@ public class CustomRecipeRegistry {
     }
 
     public static void registerRecipes() {
-        addRecipe(ItemsMI.ASTRAL_SCEPTER, ItemsMI.ASTRALSCRIPT, new ItemStack(ItemsMI.ASTRAL_SCEPTER, Meteorite.RADIUS = 10));
+        Meteorite.radius = 10;
+
+        ItemStack meteoriteWithRadius = new ItemStack(ItemsMI.ASTRAL_SCEPTER);
+        addRecipe(ItemsMI.ASTRAL_SCEPTER, ItemsMI.ASTRALSCRIPT, meteoriteWithRadius);
     }
 }

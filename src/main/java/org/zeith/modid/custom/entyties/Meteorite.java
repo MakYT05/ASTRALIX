@@ -13,19 +13,17 @@ import org.zeith.modid.init.EntitiesMI;
 
 public class Meteorite extends ThrowableProjectile {
     private static final double SPEED = 2.5D;
-    public static int RADIUS = 5;
+    public static int radius;
 
     public Meteorite(EntityType<? extends ThrowableProjectile> entityType, Level level) {
         super(entityType, level);
     }
 
-    public Meteorite(Level level, Player player) {
+    public Meteorite(Level level, Player player, int radius) {
         super(EntitiesMI.METEORITE, level);
-
+        this.radius = radius;
         Vec3 lookDirection = player.getLookAngle();
-
         this.setPos(player.getX(), player.getY() + player.getEyeHeight(), player.getZ());
-
         this.shoot(lookDirection.x, lookDirection.y, lookDirection.z, (float) SPEED, 0);
     }
 
@@ -34,9 +32,9 @@ public class Meteorite extends ThrowableProjectile {
         if (!this.level().isClientSide) {
             this.level().explode(this, this.getX(), this.getY(), this.getZ(), 4.0F, Level.ExplosionInteraction.BLOCK);
 
-            for (int x = -RADIUS; x <= RADIUS; x++) {
-                for (int y = -RADIUS; y <= RADIUS; y++) {
-                    for (int z = -RADIUS; z <= RADIUS; z++) {
+            for (int x = -radius; x <= radius; x++) {
+                for (int y = -radius; y <= radius; y++) {
+                    for (int z = -radius; z <= radius; z++) {
                         if (this.level().getBlockState(this.blockPosition().offset(x, y, z)).isAir()) {
                             this.level().setBlockAndUpdate(this.blockPosition().offset(x, y, z), Blocks.FIRE.defaultBlockState());
                         }
@@ -72,4 +70,6 @@ public class Meteorite extends ThrowableProjectile {
 
     @Override
     protected void defineSynchedData() {}
+
+    public int getRadius() { return this.radius; }
 }

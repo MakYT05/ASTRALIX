@@ -17,9 +17,7 @@ import org.zeith.modid.init.EntitiesMI;
 public class Knife extends ThrowableProjectile {
     private static final double SPEED = 2.5D;
 
-    public Knife(EntityType<? extends ThrowableProjectile> entityType, Level level) {
-        super(entityType, level);
-    }
+    public Knife(EntityType<? extends ThrowableProjectile> entityType, Level level) { super(entityType, level); }
 
     public Knife(Level level, Player player) {
         super(EntitiesMI.KNIFE, level);
@@ -74,9 +72,20 @@ public class Knife extends ThrowableProjectile {
     protected void defineSynchedData() {}
 
     private void setRotationForDirection(Vec3 direction) {
-        this.setYRot((float) (Math.atan2(direction.x, direction.z) * (180F / Math.PI)));
+        double yaw = Math.atan2(direction.x, direction.z);
+        this.setYRot((float) (yaw * (180F / Math.PI)) + 90F);
 
         double horizontalLength = Math.sqrt(direction.x * direction.x + direction.z * direction.z);
-        this.setXRot((float) (Math.atan2(direction.y, horizontalLength) * (180F / Math.PI)));
+        double pitch = Math.atan2(direction.y, horizontalLength);
+        this.setXRot((float) (pitch * (180F / Math.PI)));
+
+        if (this.getXRot() > 90F) {
+            this.setXRot(90F);
+        } else if (this.getXRot() < -90F) {
+            this.setXRot(-90F);
+        }
+
+        this.yRotO = this.getYRot();
+        this.xRotO = this.getXRot();
     }
 }

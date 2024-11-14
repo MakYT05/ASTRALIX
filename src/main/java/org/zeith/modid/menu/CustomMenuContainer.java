@@ -50,11 +50,32 @@ public class CustomMenuContainer extends AbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
+        Slot slot = this.slots.get(index);
+        if (slot.hasItem()) {
+            ItemStack itemStack = slot.getItem();
+            if (index == 2) {
+                if (!this.moveItemStackTo(itemStack, 3, 39, true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (index == 0 || index == 1) {
+                if (!this.moveItemStackTo(itemStack, 3, 39, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                if (!this.moveItemStackTo(itemStack, 0, 2, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
+            if (itemStack.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.set(itemStack);
+            }
+        }
         return ItemStack.EMPTY;
     }
 
     @Override
-    public boolean stillValid(Player player) {
-        return true;
-    }
+    public boolean stillValid(Player player) { return true; }
 }
