@@ -16,6 +16,7 @@ item.modid.magic_stick=Magic Stick
 item.modid.astralscript=Astralscript
 item.modid.astral_sword=Astral Sword
 item.modid.astral_spear=Astral Spear
+item.modid.astral_mana=Astral Mana
 
 block.modid.astral_block=Astral Block
 block.modid.astral_turf=Astral Turf

@@ -2,6 +2,7 @@ package org.zeith.modid.client.mana;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderGuiOverlayEvent;
 import net.minecraftforge.event.TickEvent;
@@ -10,6 +11,8 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = "modid", value = Dist.CLIENT)
 public class ManaOverlay {
+
+    private static final ResourceLocation MANA_TEXTURE = new ResourceLocation("modid", "textures/gui/mana.png");
 
     private ManaOverlay() {}
 
@@ -27,19 +30,19 @@ public class ManaOverlay {
 
         if (minecraft.player == null) return;
 
+        if (!event.getOverlay().id().toString().equals("minecraft:player_health")) return;
+
         int scaledWidth = minecraft.getWindow().getGuiScaledWidth();
         int x = scaledWidth - 140;
         int y = 10;
 
         var guiGraphics = event.getGuiGraphics();
 
-        int outlineColor = 0xFF4B0082;
-        guiGraphics.fill(x - 1, y - 1, x + MANA_BAR_WIDTH + 1, y + MANA_BAR_HEIGHT + 1, outlineColor);
-
-        guiGraphics.fill(x, y, x + MANA_BAR_WIDTH, y + MANA_BAR_HEIGHT, 0xFF000000);
+        guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
+        guiGraphics.blit(MANA_TEXTURE, x - 1, y - 1, 0, 0, 61, 7, MANA_BAR_WIDTH + 1, MANA_BAR_HEIGHT + 1);
 
         int manaWidth = (int) ((float) currentMana / MAX_MANA * MANA_BAR_WIDTH);
-        guiGraphics.fill(x, y, x + manaWidth, y + MANA_BAR_HEIGHT, 0xFF00BFFF);
+        guiGraphics.fill(x, y, x + manaWidth, y + MANA_BAR_HEIGHT, 0x5500BFFF);
 
         Font font = minecraft.font;
         String manaText = currentMana + " / " + MAX_MANA;
