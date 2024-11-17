@@ -1,5 +1,6 @@
 package org.zeith.modid.custom.entyties;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -21,12 +22,18 @@ import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.zeith.hammeranims.api.animsys.AnimationSystem;
+import org.zeith.hammeranims.api.animsys.CommonLayerNames;
+import org.zeith.hammeranims.api.animsys.layer.AnimationLayer;
+import org.zeith.hammeranims.api.tile.IAnimatedEntity;
+import org.zeith.modid.init.AnimationsMI;
 import org.zeith.modid.init.EntitiesMI;
 import org.zeith.modid.init.ItemsMI;
 
 import javax.annotation.Nullable;
 
-public class RumarukaMob extends PathfinderMob implements Merchant {
+public class RumarukaMob extends PathfinderMob implements Merchant, IAnimatedEntity {
+    protected final AnimationSystem animations = AnimationSystem.create(this);
     private final MerchantOffers offers = new MerchantOffers();
     private Player tradingPlayer;
 
@@ -67,7 +74,6 @@ public class RumarukaMob extends PathfinderMob implements Merchant {
         return super.interactAt(player, vec, hand);
     }
 
-
     @Override
     public MerchantOffers getOffers() { return offers; }
 
@@ -105,6 +111,60 @@ public class RumarukaMob extends PathfinderMob implements Merchant {
     @Override
     public void notifyTradeUpdated(ItemStack stack) {}
 
+    @Override
+    public void tick() {
+        super.tick();
+
+        if (this.getDeltaMovement().lengthSqr() > 0.001) {
+            if (AnimationsMI.RUMARUKA_ANIMATION_GO != null) {
+                animations.startAnimationAt(CommonLayerNames.AMBIENT, AnimationsMI.RUMARUKA_ANIMATION_GO);
+            }
+        } else {
+            animations.startAnimationAt(CommonLayerNames.ACTION, AnimationsMI.RUMARUKA_ANIMATION_GO);
+        }
+
+        float deltaYaw = Math.abs(this.yBodyRot - this.yBodyRotO);
+        if (deltaYaw > 10.0F && AnimationsMI.RUMARUKA_ANIMATION_HEAD != null) {
+            animations.startAnimationAt(CommonLayerNames.ACTION, AnimationsMI.RUMARUKA_ANIMATION_HEAD);
+        } else {
+            animations.startAnimationAt(CommonLayerNames.ACTION, AnimationsMI.RUMARUKA_ANIMATION_HEAD);
+        }
+
+        animations.tick();
+    }
+
+    @Override
+    public void setupSystem(AnimationSystem.Builder builder) {
+        builder.addLayers(
+                AnimationLayer.builder(CommonLayerNames.AMBIENT).preventAutoSync(),
+                AnimationLayer.builder(CommonLayerNames.ACTION)
+        ).autoSync();
+    }
+
+    @Override
+    public AnimationSystem getAnimationSystem() { return animations; }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag nbt) {
+        super.addAdditionalSaveData(nbt);
+        nbt.put("Animations", animations.serializeNBT());
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag nbt) {
+        super.readAdditionalSaveData(nbt);
+        animations.deserializeNBT(nbt.getCompound("Animations"));
+    }
+
+
+    @Override
+    public void load(CompoundTag nbt) {
+        super.load(nbt);
+        animations.deserializeNBT(nbt.getCompound("Animations"));
+    }
+
     @SubscribeEvent
-    public static void entityAttributes(EntityAttributeCreationEvent event) {event.put(EntitiesMI.RUMARUKA_MOB, RumarukaMob.createAttributes().build());}
+    public static void entityAttributes(EntityAttributeCreationEvent event) {
+        event.put(EntitiesMI.RUMARUKA_MOB, RumarukaMob.createAttributes().build());
+    }
 }

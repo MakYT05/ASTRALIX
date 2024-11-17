@@ -41,7 +41,7 @@ public class ManaOverlay {
         guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
         guiGraphics.blit(MANA_TEXTURE, x - 1, y - 1, 0, 0, 61, 7, MANA_BAR_WIDTH + 1, MANA_BAR_HEIGHT + 1);
 
-        int manaWidth = (int) ((float) currentMana / MAX_MANA * MANA_BAR_WIDTH);
+        int manaWidth = (int) ((float) currentMana / MAX_MANA * (MANA_BAR_WIDTH - 5));
         guiGraphics.fill(x, y, x + manaWidth, y + MANA_BAR_HEIGHT, 0x5500BFFF);
 
         Font font = minecraft.font;

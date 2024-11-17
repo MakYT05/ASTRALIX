@@ -14,9 +14,7 @@ import net.minecraft.world.entity.player.Player;
 import org.zeith.modid.client.mana.ManaOverlay;
 
 public class AstralMana extends Item {
-    public AstralMana(Item.Properties properties) {
-        super(properties);
-    }
+    public AstralMana(Item.Properties properties) { super(properties); }
 
     @Override
     public UseAnim getUseAnimation(ItemStack stack) { return UseAnim.DRINK; }
