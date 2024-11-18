@@ -1,5 +1,6 @@
 package org.zeith.modid.custom.entyties;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -12,6 +13,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.MoveToBlockGoal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.MerchantMenu;
 import net.minecraft.world.item.ItemStack;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.trading.Merchant;
 import net.minecraft.world.item.trading.MerchantOffer;
 import net.minecraft.world.item.trading.MerchantOffers;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import org.zeith.hammeranims.api.animsys.AnimationSystem;
@@ -39,7 +42,17 @@ public class RumarukaMob extends PathfinderMob implements Merchant, IAnimatedEnt
 
     public RumarukaMob(EntityType<? extends PathfinderMob> type, Level world) {
         super(type, world);
-        updateOffers();
+
+        this.goalSelector.addGoal(1, new MoveToBlockGoal(this, 1.0D, 10) {
+            @Override
+            public boolean canUse() { return super.canUse(); }
+
+            @Override
+            public void tick() { super.tick(); }
+
+            @Override
+            protected boolean isValidTarget(LevelReader levelReader, BlockPos pos) { return true; }
+        });
     }
 
     private void updateOffers() {
@@ -112,28 +125,6 @@ public class RumarukaMob extends PathfinderMob implements Merchant, IAnimatedEnt
     public void notifyTradeUpdated(ItemStack stack) {}
 
     @Override
-    public void tick() {
-        super.tick();
-
-        if (this.getDeltaMovement().lengthSqr() > 0.001) {
-            if (AnimationsMI.RUMARUKA_ANIMATION_GO != null) {
-                animations.startAnimationAt(CommonLayerNames.AMBIENT, AnimationsMI.RUMARUKA_ANIMATION_GO);
-            }
-        } else {
-            animations.startAnimationAt(CommonLayerNames.ACTION, AnimationsMI.RUMARUKA_ANIMATION_GO);
-        }
-
-        float deltaYaw = Math.abs(this.yBodyRot - this.yBodyRotO);
-        if (deltaYaw > 10.0F && AnimationsMI.RUMARUKA_ANIMATION_HEAD != null) {
-            animations.startAnimationAt(CommonLayerNames.ACTION, AnimationsMI.RUMARUKA_ANIMATION_HEAD);
-        } else {
-            animations.startAnimationAt(CommonLayerNames.ACTION, AnimationsMI.RUMARUKA_ANIMATION_HEAD);
-        }
-
-        animations.tick();
-    }
-
-    @Override
     public void setupSystem(AnimationSystem.Builder builder) {
         builder.addLayers(
                 AnimationLayer.builder(CommonLayerNames.AMBIENT).preventAutoSync(),
@@ -143,12 +134,6 @@ public class RumarukaMob extends PathfinderMob implements Merchant, IAnimatedEnt
 
     @Override
     public AnimationSystem getAnimationSystem() { return animations; }
-
-    @Override
-    public void addAdditionalSaveData(CompoundTag nbt) {
-        super.addAdditionalSaveData(nbt);
-        nbt.put("Animations", animations.serializeNBT());
-    }
 
     @Override
     public void readAdditionalSaveData(CompoundTag nbt) {
@@ -163,8 +148,15 @@ public class RumarukaMob extends PathfinderMob implements Merchant, IAnimatedEnt
         animations.deserializeNBT(nbt.getCompound("Animations"));
     }
 
-    @SubscribeEvent
-    public static void entityAttributes(EntityAttributeCreationEvent event) {
-        event.put(EntitiesMI.RUMARUKA_MOB, RumarukaMob.createAttributes().build());
+    @Override
+    public void tick() {
+        super.tick();
+        animations.tick();
+
+        animations.startAnimationAt(CommonLayerNames.AMBIENT, AnimationsMI.RUMARUKA_ANIMATION_GO);
+        animations.startAnimationAt(CommonLayerNames.AMBIENT, AnimationsMI.RUMARUKA_ANIMATION_HEAD);
     }
+
+    @SubscribeEvent
+    public static void entityAttributes(EntityAttributeCreationEvent event) { event.put(EntitiesMI.RUMARUKA_MOB, RumarukaMob.createAttributes().build()); }
 }

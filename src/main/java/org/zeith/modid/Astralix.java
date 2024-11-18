@@ -31,6 +31,7 @@ import org.zeith.modid.init.ItemsMI;
 import org.zeith.modid.menu.CustomMenuTypes;
 import org.zeith.modid.menu.CustomScreen;
 import org.zeith.modid.recipe.CustomRecipeRegistry;
+import org.zeith.modid.worldgen.ModFeatures;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -62,6 +63,9 @@ public class Astralix {
 		bus.addListener(this::gatherData);
 
 		ENCHANTMENTS.register(bus);
+
+		ModFeatures.CONFIGURED_FEATURES.register(bus);
+		ModFeatures.PLACED_FEATURES.register(bus);
 
 		//bus.addListener(EnchantListener::onLivingEntityDeath);
 

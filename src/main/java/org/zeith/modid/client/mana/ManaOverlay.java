@@ -20,6 +20,7 @@ public class ManaOverlay {
     public static int currentMana = 100;
     private static final int MANA_BAR_WIDTH = 61;
     private static final int MANA_BAR_HEIGHT = 7;
+    private static final int MANA_BAR_X_OFFSET = 10;
     private static final int MANA_REGEN_RATE = 1;
     private static final int TICKS_PER_REGEN = 40;
     private static int tickCounter = 0;
@@ -33,15 +34,16 @@ public class ManaOverlay {
         if (!event.getOverlay().id().toString().equals("minecraft:player_health")) return;
 
         int scaledWidth = minecraft.getWindow().getGuiScaledWidth();
-        int x = scaledWidth - 140;
+        int x = scaledWidth - 140 + MANA_BAR_X_OFFSET;
         int y = 10;
 
         var guiGraphics = event.getGuiGraphics();
 
         guiGraphics.setColor(1.0F, 1.0F, 1.0F, 1.0F);
-        guiGraphics.blit(MANA_TEXTURE, x - 1, y - 1, 0, 0, 61, 7, MANA_BAR_WIDTH + 1, MANA_BAR_HEIGHT + 1);
+        guiGraphics.blit(MANA_TEXTURE, x - 1, y - 1, 0, 0, MANA_BAR_WIDTH, MANA_BAR_HEIGHT, MANA_BAR_WIDTH, MANA_BAR_HEIGHT);
 
-        int manaWidth = (int) ((float) currentMana / MAX_MANA * (MANA_BAR_WIDTH - 5));
+        int manaWidth = Math.min(MANA_BAR_WIDTH, (int) ((float) currentMana / MAX_MANA * MANA_BAR_WIDTH));
+
         guiGraphics.fill(x, y, x + manaWidth, y + MANA_BAR_HEIGHT, 0x5500BFFF);
 
         Font font = minecraft.font;

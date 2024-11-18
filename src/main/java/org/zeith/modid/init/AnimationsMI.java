@@ -7,8 +7,8 @@ import org.zeith.hammerlib.annotations.SimplyRegister;
 
 @SimplyRegister
 public interface AnimationsMI {
-    @RegistryName("rumaruka_animation")
+    @RegistryName("rumaruka_anim")
     IAnimationContainer RUMARUKA_ANIMATION = IAnimationContainer.createNoSuffix();
-    AnimationHolder RUMARUKA_ANIMATION_GO = RUMARUKA_ANIMATION.holder("rumaruka_go");
     AnimationHolder RUMARUKA_ANIMATION_HEAD = RUMARUKA_ANIMATION.holder("rumaruka_head");
+    AnimationHolder RUMARUKA_ANIMATION_GO= RUMARUKA_ANIMATION.holder("rumaruka_walk");
 }
