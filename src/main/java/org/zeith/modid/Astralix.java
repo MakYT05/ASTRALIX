@@ -1,12 +1,9 @@
 package org.zeith.modid;
 
 import net.minecraft.client.gui.screens.MenuScreens;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -26,13 +23,10 @@ import org.zeith.modid.custom.entyties.MoontlexMob;
 import org.zeith.modid.custom.entyties.RumarukaMob;
 import org.zeith.modid.custom.entyties.ZeithMob;
 import org.zeith.modid.datagen.LootTableModifier;
-import org.zeith.modid.datagen.ModWorldGenProvider;
 import org.zeith.modid.init.ItemsMI;
 import org.zeith.modid.menu.CustomMenuTypes;
 import org.zeith.modid.menu.CustomScreen;
 import org.zeith.modid.recipe.CustomRecipeRegistry;
-
-import java.util.concurrent.CompletableFuture;
 
 @Mod(Astralix.MOD_ID)
 public class Astralix {
@@ -59,7 +53,6 @@ public class Astralix {
 		bus.addListener(RumarukaMob::entityAttributes);
 
 		bus.addListener(Astralix::clientSetup);
-		bus.addListener(this::gatherData);
 
 		ENCHANTMENTS.register(bus);
 
@@ -79,12 +72,6 @@ public class Astralix {
 		CustomRecipeRegistry.registerRecipes();
 
 		MinecraftForge.EVENT_BUS.register(KeyInputHandler.class);
-	}
-
-	private void gatherData(GatherDataEvent event) {
-		PackOutput packOutput = event.getGenerator().getPackOutput();
-		CompletableFuture<HolderLookup.Provider> future = event.getLookupProvider();
-		event.getGenerator().addProvider(event.includeServer(), new ModWorldGenProvider(packOutput, future));
 	}
 
 	public static ResourceLocation id(String path) { return new ResourceLocation(MOD_ID, path); }

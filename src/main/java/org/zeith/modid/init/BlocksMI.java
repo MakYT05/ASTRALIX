@@ -1,18 +1,13 @@
 package org.zeith.modid.init;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SaplingBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.zeith.hammerlib.annotations.RegistryName;
 import org.zeith.hammerlib.annotations.SimplyRegister;
 import org.zeith.modid.Astralix;
 import org.zeith.modid.custom.blocks.*;
-import org.zeith.modid.worldgen.tree.PineTreeGrower;
 
 @SimplyRegister
-public interface BlocksMI
-{
+public interface BlocksMI {
     @RegistryName("astral_block")
     Block ASTRAL_BLOCK = Astralix.MOD_TAB.add(new AstralBlock());
 
@@ -29,8 +24,14 @@ public interface BlocksMI
     Block ASTRALIT_BLOCK = Astralix.MOD_TAB.add(new AstralitBlock());
 
     @RegistryName("sapling_astral")
-    SaplingBlock SAPLING_ASTRAL = Astralix.MOD_TAB.add(new SaplingBlock(new PineTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+    Block SAPLING_ASTRAL = Astralix.MOD_TAB.add(new SaplingAstral());
 
     @RegistryName("astral_table")
     Block ASTRAL_TABLE = Astralix.MOD_TAB.add(new AstralTable());
+
+    @RegistryName("astral_meh")
+    Block ASTRAL_MEH = Astralix.MOD_TAB.add(new AstralMeh());
+
+    @RegistryName("astral_way")
+    Block ASTRAL_WAY = Astralix.MOD_TAB.add(new AstralWay());
 }

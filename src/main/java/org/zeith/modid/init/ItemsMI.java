@@ -9,7 +9,7 @@ import org.zeith.modid.custom.items.*;
 import static org.zeith.modid.init.EntitiesMI.ZEITH_MOB;
 
 @SimplyRegister
-public interface ItemsMI{
+public interface ItemsMI {
 	@RegistryName("lightning_wand")
 	Item LIGHTNING_WAND = Astralix.MOD_TAB.add(new LightningWandItem(new Item.Properties().durability(10).rarity(Rarity.EPIC)));
 
