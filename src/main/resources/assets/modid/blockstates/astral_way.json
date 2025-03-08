@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "modid:block/astral_way", "y": 0
+    },
+    "facing=east":  {
+      "model": "modid:block/astral_way", "y": 90
+    },
+    "facing=south": {
+      "model": "modid:block/astral_way", "y": 180
+    },
+    "facing=west":  {
+      "model": "modid:block/astral_way", "y": 270
+    }
+  }
+}
